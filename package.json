@@ -1,0 +1,16 @@
+{
+  "name": "siret2idcc",
+  "version": "0.0.1",
+  "description": "Retrieves the matching Convention Collective number for a French company based on its SIRET identification number",
+  "main": "index.js",
+  "repository": "https://github.com/SocialGouv/siret2idcc",
+  "author": "contact@num.social.gouv.fr",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^5.4.0",
+    "express": "^4.16.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
