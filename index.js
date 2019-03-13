@@ -27,7 +27,7 @@ app.get(
       'name': matches[0].name
     };
     const idccList = matches.map(m => m.IDCC).filter(idcc => idcc !== "9999");
-    return res.json({ company: { ...baseCompany, idccList: null }});
+    return res.json({ company: { ...baseCompany, idccList }});
   }
 )
 
