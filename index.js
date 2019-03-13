@@ -17,13 +17,18 @@ app.get(
       return res.status(422).json({error: 'No SIRET given in the request'});
     }
 
-    const foundCompany = query.get(siret);
-    if (!foundCompany) {
+    const matches = query.all(siret);
+    if (matches.length == 0) {
       return res.status(404).send({error: 'No company found for this SIRET'});
     }
 
-    return res.json({'company': foundCompany});
+    const baseCompany = {
+      'siret': matches[0].SIRET,
+      'name': matches[0].name
+    };
+    const idccList = matches.map(m => m.IDCC).filter(idcc => idcc !== "9999");
+    return res.json({ company: { ...baseCompany, idccList: null }});
   }
 )
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`siret2idcc API listening on port ${port}!`))

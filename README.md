@@ -50,9 +50,15 @@ It will return a JSON object that looks like:
 ```json
 {
   "company": {
-    "SIRET": "84526029800011",
+    "siret": "84526029800011",
     "name": "OUT OF SCREEN-75020-PARIS",
-    "IDCC": "0650"
+    "idccList": ["0650"]
   }
 }
 ```
+
+The `idccList` can be:
+
+- an array with a single item, that's the most common and easy case
+- an array with multiple items, for companies that have employees working with multiple Conventions
+- an empty array when we don't know the IDCC or it has not been set yet (that's the code `9999` from our source)
