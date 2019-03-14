@@ -43,6 +43,7 @@ def output_to_sqlite(df):
         os.remove(sqlite_path)
     engine = create_engine('sqlite:///%s' % sqlite_path)
     df.to_sql('companies', con=engine, index=False)
+    engine.execute("CREATE INDEX companies_siret_idx ON companies(SIRET);")
     print("exported %s to %s!" % (sqlite_path, df.shape[0]))
 
 
