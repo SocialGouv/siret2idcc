@@ -30,12 +30,10 @@ app.get(
     if (!siret || siret === '') {
       return res.status(422).json({error: 'No SIRET given in the request'});
     }
-
     const matches = companyQuery.all(siret);
     if (matches.length == 0) {
       return res.status(404).send({error: 'No company found for this SIRET'});
     }
-
     const baseCompany = {
       'siret': matches[0].siret,
       'name': matches[0].name,
@@ -54,12 +52,7 @@ app.get(
     if (!siret || siret === '') {
       return res.status(422).json({error: 'No SIRET given in the query params'});
     }
-
     const matches = companiesQuery.all(siret);
-    if (matches.length == 0) {
-      return res.status(404).send({error: 'No company found for a similar SIRET'});
-    }
-
     return res.json({ companies: matches });
   }
 )
