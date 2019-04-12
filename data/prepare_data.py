@@ -29,6 +29,7 @@ def filter_df(df):
             'IDCC': 'idcc_num'
         }) \
         .filter(items=['siret', 'name', 'idcc_num'])
+    df_simple["idcc_num"] = df_simple["idcc_num"].apply(lambda num: num.lstrip("0") if isinstance(num, str) else num)
     print(df_simple.head())
     return df_simple
 
