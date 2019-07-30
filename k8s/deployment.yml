@@ -1,0 +1,26 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: siret2idcc${HASH_BRANCH_NAME}
+  labels:
+    app: siret2idcc${HASH_BRANCH_NAME}
+    branch: siret2idcc${HASH_BRANCH_NAME}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: siret2idcc${HASH_BRANCH_NAME}
+  template:
+    metadata:
+      labels:
+        app: siret2idcc${HASH_BRANCH_NAME}
+    spec:
+      containers:
+        - image: ${CI_REGISTRY_IMAGE}/api:${IMAGE_TAG}
+          name: siret2idcc
+          ports:
+            - containerPort: ${PORT}
+          env:
+            - name: PORT
+              value: "${PORT}"

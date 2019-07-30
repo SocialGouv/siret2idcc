@@ -1,0 +1,17 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: siret2idcc${HASH_BRANCH_NAME}
+  labels:
+    app: siret2idcc${HASH_BRANCH_NAME}
+    branch: siret2idcc${HASH_BRANCH_NAME}
+spec:
+  rules:
+  - host: ${HASH_BRANCH_INGRESS}siret2idcc.dev.factory.social.gouv.fr
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: siret2idcc${HASH_BRANCH_NAME}
+          servicePort: ${PORT}

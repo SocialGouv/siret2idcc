@@ -1,0 +1,14 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: siret2idcc${HASH_BRANCH_NAME}
+  labels:
+    app: siret2idcc${HASH_BRANCH_NAME}
+    branch: siret2idcc${HASH_BRANCH_NAME}
+spec:
+  selector:
+    app: siret2idcc${HASH_BRANCH_NAME}
+  ports:
+  - port: ${PORT}
+    name: api
