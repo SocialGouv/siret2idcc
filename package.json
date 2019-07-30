@@ -7,7 +7,6 @@
   "author": "contact@num.social.gouv.fr",
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^5.4.0",
     "cors": "^2.8.5",
     "express": "^4.16.4"
   },

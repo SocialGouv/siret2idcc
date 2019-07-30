@@ -1,60 +1,79 @@
-const express = require('express')
-const cors = require("cors")
-const betterSQLite3 = require('better-sqlite3');
+const express = require("express");
+const cors = require("cors");
 
-const SQLITE_PATH = process.env.DB_PATH || './data/siret_idcc.sqlite';
-
-const db = betterSQLite3(SQLITE_PATH);
-const companiesQuery = db.prepare(`
-  SELECT DISTINCT companies.siret, companies.name
-  FROM companies
-  WHERE companies.siret LIKE ? || '%'
-  LIMIT 20
-`)
-const companyQuery = db.prepare(`
-  SELECT companies.siret, companies.name, companies.idcc_num, idcc.titre
-  FROM companies
-  LEFT JOIN idcc ON companies.idcc_num = idcc.num
-  WHERE companies.siret = ?
-`)
-
-const app = express()
-app.use(cors())
+const app = express();
+app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-app.get(
-  '/api/v1/company/:siret',
-  (req, res) => {
-    const siret = req.params.siret;
-    if (!siret || siret === '') {
-      return res.status(422).json({error: 'No SIRET given in the request'});
-    }
-    const matches = companyQuery.all(siret);
-    if (matches.length == 0) {
-      return res.status(404).send({error: 'No company found for this SIRET'});
-    }
-    const baseCompany = {
-      'siret': matches[0].siret,
-      'name': matches[0].name,
-    };
-    const idccList = matches.
-      filter(match => match.idcc_num !== "9999").
-      map(match => ({num: match.idcc_num, titre: match.titre}));
-    return res.json({ company: { ...baseCompany, idccList }});
-  }
-)
+const fs = require("fs");
 
-app.get(
-  '/api/v1/companies',
-  (req, res) => {
-    const siret = req.query.siret;
-    if (!siret || siret === '') {
-      return res.status(422).json({error: 'No SIRET given in the query params'});
-    }
-    const matches = companiesQuery.all(siret);
-    return res.json({ companies: matches });
-  }
-)
+const formatMonth = num => (num < 10 ? "0" + num : num);
 
-app.listen(port, () => console.log(`siret2idcc API listening on port ${port}!`))
+// Map : JavaScript heap out of memory
+const parseWeezFile1 = inPath => {
+  const contents = fs.readFileSync(inPath).toString();
+
+  const rows = contents
+    .split("\n")
+    .slice(1)
+    .map(row => row.split(",").map(cell => cell.trim()))
+    .filter(([mois, siret, idcc, date]) => idcc !== "0");
+
+  const sirets = new Map();
+  rows.forEach(([mois, siret, idcc, date]) => {
+    if (!sirets.has(siret)) {
+      sirets.set(siret, [idcc]);
+    } else {
+      const s = sirets.get(siret);
+      s.push(idcc);
+    }
+  });
+
+  return sirets;
+};
+
+const parseWeezFile = inPath => {
+  const contents = fs.readFileSync(inPath).toString();
+
+  const rows = contents
+    .split("\n")
+    .slice(1)
+    .map(row => row.split(",").map(cell => cell.trim()))
+    .filter(([mois, siret, idcc, date]) => idcc !== "0")
+    .filter(([mois, siret, idcc, date]) => !!idcc)
+    .filter(([mois, siret, idcc, date]) => !!siret);
+
+  const sirets = {};
+  rows.forEach(([mois, siret, idcc, date]) => {
+    if (sirets[siret] && !sirets[siret].includes(idcc)) {
+      sirets[siret].push(idcc);
+    } else {
+      sirets[siret] = [idcc];
+    }
+  });
+
+  return sirets;
+};
+
+const inFile = `./data/WEEZ.csv`;
+
+const sirets = parseWeezFile(inFile);
+
+app.get("/api/v1/company/:siret", (req, res) => {
+  const siret = req.params.siret;
+  if (!siret || siret === "" || siret.length != 14) {
+    return res
+      .status(422)
+      .json({ error: "invalid SIRET given in the request" });
+  }
+  const match = sirets[siret];
+  if (!match || match.length === 0) {
+    return res.status(404).send({ error: "No IDCC found for this SIRET" });
+  }
+  return res.json(match);
+});
+
+app.listen(port, () =>
+  console.log(`siret2idcc API listening on http://127.0.0.1:${port}`)
+);
