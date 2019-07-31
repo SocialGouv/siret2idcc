@@ -1,16 +1,14 @@
-const fs = require("fs");
-
 const parseWeez = contents => {
   const rows = contents
     .split("\n")
     .slice(1)
     .map(row => row.split(",").map(cell => cell.trim()))
-    .filter(([mois, siret, idcc, date]) => idcc !== "0")
-    .filter(([mois, siret, idcc, date]) => !!idcc)
-    .filter(([mois, siret, idcc, date]) => !!siret);
+    .filter(([, , idcc]) => idcc !== "0")
+    .filter(([, , idcc]) => !!idcc)
+    .filter(([, siret, ,]) => !!siret);
 
   const sirets = {};
-  rows.forEach(([mois, siret, idcc, date]) => {
+  rows.forEach(([, siret, idcc]) => {
     if (sirets[siret] && !sirets[siret].includes(idcc)) {
       sirets[siret].push(idcc);
     } else {
