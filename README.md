@@ -21,6 +21,8 @@ The only route that exists so far is : `/api/v1/:siret`
 It will return a JSON object that looks like:
 
 ```json
-["1486"]
+{
+  "idcc": ["1486"]
+}
 ```
 
