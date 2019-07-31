@@ -15,7 +15,7 @@ const sirets = parseWeez(fs.readFileSync(inFile).toString());
 
 app.get("/api/v1/:siret", (req, res) => {
   const siret = req.params.siret;
-  if (!siret || siret === "" || siret.length != 14) {
+  if (!siret || siret.length != 14) {
     return res
       .status(422)
       .json({ error: "invalid SIRET given in the request" });
