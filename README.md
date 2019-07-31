@@ -14,10 +14,11 @@ In production, you can use:
 
     NODE_ENV=production PORT=8023 yarn start
 
-The only route that exists so far is : `/api/v1/company/:siret`
+The only route that exists so far is : `/api/v1/:siret`
 
 It will return a JSON object that looks like:
 
 ```json
 ["1486"]
 ```
+
