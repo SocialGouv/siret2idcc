@@ -1,8 +1,10 @@
-# siret2idcc
+# siret2idcc [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/commits/master)
 
 ![](https://i.imgur.com/gSe54sx.png)
 
-A very simple API that exposes a file that maps SIRETs to IDCCs
+A very simple API that exposes a file that maps SIRETs to IDCCs.
+
+Available at https://siret2idcc.incubateur.social.gouv.fr/api/v1/80258570300027
 
 ## API Server
 
