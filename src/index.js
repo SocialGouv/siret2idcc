@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 
+const kali = require("@socialgouv/kali-data/data/index.json");
+
 const parseWeez = require("./parseWeez");
 
 const app = express();
@@ -12,6 +14,13 @@ const port = process.env.PORT || 3000;
 const inFile = process.env.DATA_FILE || `./data/WEEZ.csv`;
 
 const sirets = parseWeez(fs.readFileSync(inFile).toString());
+
+const normalizeIdcc = str => {
+  while (("" + str).length < 4) {
+    str = "0" + str;
+  }
+  return str;
+};
 
 app.get("/api/v1/:siret", (req, res) => {
   const siret = req.params.siret;
@@ -24,7 +33,13 @@ app.get("/api/v1/:siret", (req, res) => {
   if (!match || match.length === 0) {
     return res.status(404).send({ error: "No IDCC found for this SIRET" });
   }
-  return res.json({ idcc: match });
+  const results = match.map(
+    id =>
+      kali.find(cc => normalizeIdcc(cc.num) === normalizeIdcc(id)) || {
+        num: id
+      }
+  );
+  return res.json({ results });
 });
 
 app.listen(port, () =>
