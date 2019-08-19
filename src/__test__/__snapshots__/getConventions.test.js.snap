@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can get conventions for 44858080300022 1`] = `
+Array [
+  Object {
+    "active": true,
+    "date_publi": "2007-06-29T00:00:00.000Z",
+    "effectif": 140105,
+    "etat": "VIGUEUR_ETEN",
+    "id": "KALICONT000018773893",
+    "mtime": 1561059873,
+    "nature": "IDCC",
+    "num": "2609",
+    "texte_de_base": "KALITEXT000018773681",
+    "titre": "Convention collective nationale des employés, techniciens et agents de maîtrise du bâtiment du 12 juillet 2006",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000018773893",
+  },
+  Object {
+    "active": true,
+    "date_publi": "2018-07-01T00:00:00.000Z",
+    "effectif": 257290,
+    "etat": "VIGUEUR_NON_ETEN",
+    "id": "KALICONT000005635220",
+    "mtime": 1562614614,
+    "nature": "IDCC",
+    "num": "1597",
+    "texte_de_base": "KALITEXT000005645150",
+    "titre": "Nouvelle convention collective nationale des ouvriers employés par les entreprises du bâtiment non visées par le décret du 1er mars 1962 (c'est-à-dire occupant plus de 10 salariés) du 7 mars 2018 (Avenant du 7 mars 2018)",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635220",
+  },
+  Object {
+    "active": true,
+    "date_publi": "2018-07-01T00:00:00.000Z",
+    "effectif": 282254,
+    "etat": "VIGUEUR_NON_ETEN",
+    "id": "KALICONT000005635221",
+    "mtime": 1562614614,
+    "nature": "IDCC",
+    "num": "1596",
+    "texte_de_base": "KALITEXT000005647125",
+    "titre": "Nouvelle convention collective nationale des ouvriers employés par les entreprises du bâtiment visées par le décret du 1er mars 1962 (c'est-à-dire occupant jusqu'à 10 salariés) du 7 mars 2018 (Avenant du 7 mars 2018) ",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635221",
+  },
+]
+`;
+
+exports[`can get conventions for 81431448000017 1`] = `
+Array [
+  Object {
+    "active": true,
+    "date_publi": "1976-04-01T00:00:00.000Z",
+    "effectif": 134889,
+    "etat": "VIGUEUR_ETEN",
+    "id": "KALICONT000005635886",
+    "mtime": 1561491771,
+    "nature": "IDCC",
+    "num": "843",
+    "texte_de_base": "KALITEXT000005688564",
+    "titre": "Convention collective nationale de la boulangerie-pâtisserie du 19 mars 1976.  Etendue par arrêté du 21 juin 1978 JONC 28 juillet 1978.",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635886",
+  },
+]
+`;
+
+exports[`can get conventions for 82161143100015 1`] = `
+Array [
+  Object {
+    "active": true,
+    "date_publi": "1988-01-01T00:00:00.000Z",
+    "effectif": 857061,
+    "etat": "VIGUEUR_ETEN",
+    "id": "KALICONT000005635173",
+    "mtime": 1556652289,
+    "nature": "IDCC",
+    "num": "1486",
+    "texte_de_base": "KALITEXT000005679895",
+    "titre": "Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 15 décembre 1987. ",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635173",
+  },
+]
+`;

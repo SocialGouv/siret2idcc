@@ -1,17 +1,27 @@
 {
-  "name": "siret2idcc",
-  "version": "0.0.1",
+  "name": "@socialgouv/siret2idcc",
+  "version": "1.0.0",
   "description": "Retrieves the matching Convention Collective number for a French company based on its SIRET identification number",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/SocialGouv/siret2idcc",
   "author": "contact@num.social.gouv.fr",
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^5.4.0",
+    "@socialgouv/kali-data": "^1.0.3",
     "cors": "^2.8.5",
     "express": "^4.16.4"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "lint": "eslint src",
+    "test": "jest --runInBand"
+  },
+  "devDependencies": {
+    "@socialgouv/eslint-config-recommended": "^0.9.3",
+    "eslint": "^6.1.0",
+    "eslint-config-react": "^1.1.7",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "supertest": "^4.0.2"
   }
 }

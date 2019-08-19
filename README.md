@@ -1,37 +1,12 @@
-# siret2idcc
+# siret2idcc [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/commits/master)
 
 ![](https://i.imgur.com/gSe54sx.png)
 
-A very simple API that exposes a file that maps SIRETs to IDCCs
+A very simple API that exposes a file that maps SIRETs to IDCCs.
 
-The project has two components:
-- A python extraction script that goes through the original CSV and stores it into a SQLite database
-- A barebones NodeJS Express API that queries the generated SQLite database
+Available at https://siret2idcc.incubateur.social.gouv.fr/api/v1/80258570300027
 
-## Original Data
-
-The original data is not yet Open Data, so we cannot publish it here.
-
-Meanwhile, make sure you retrieve it somehow and copy it to `data/extraction_etablissements_idcc.csv`.
-
-## Data extraction
-
-Install dependencies:
-
-```
-cd data
-pip install -r requirements.txt
-```
-
-To prepare the data from the original CSV:
-
-    python prepare_data.py
-
-(there is an `--output` option that defaults to `sqlite` but you can also choose `csv`)
-
-To play around with the notebook:
-
-    jupyter notebook
+:warning: Usage interne, aucune garantie sur les données.
 
 ## API Server
 
@@ -43,22 +18,53 @@ In production, you can use:
 
     NODE_ENV=production PORT=8023 yarn start
 
-The only route that exists so far is : `/api/v1/company/:siret`
+The only route that exists so far is : `/api/v1/:siret`
 
-It will return a JSON object that looks like:
+It will return a JSON array :
 
 ```json
-{
-  "company": {
-    "siret": "84526029800011",
-    "name": "OUT OF SCREEN-75020-PARIS",
-    "idccList": ["0650"]
-  }
-}
+[
+    {
+        "active": true,
+        "date_publi": "1997-12-07T00:00:00.000Z",
+        "etat": "VIGUEUR_ETEN",
+        "id": "KALICONT000005635534",
+        "mtime": 1562700340,
+        "nature": "IDCC",
+        "num": "1979",
+        "texte_de_base": "KALITEXT000005670044",
+        "titre": "Convention collective nationale des hôtels, cafés restaurants (HCR) du 30 avril 1997",
+        "effectif": 580085,
+        "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635534"
+    }
+]
 ```
 
-The `idccList` can be:
+## Tests
 
-- an array with a single item, that's the most common and easy case
-- an array with multiple items, for companies that have employees working with multiple Conventions
-- an empty array when we don't know the IDCC or it has not been set yet (that's the code `9999` from our source)
+```sh
+PASS getConventions.test.js (6.152s)
+✓ can get conventions for 82161143100015 (5ms)
+✓ can get conventions for 81431448000017 (1ms)
+✓ can get conventions for 44858080300022
+
+PASS server.test.js (6.404s)
+✓ e2e : /api/v1/82161143100015 should return convention (22ms)
+✓ e2e : unknown siret should return empty array (4ms)
+✓ e2e : invalid siret should return 422 (2ms)
+
+PASS getConventionUrl.test.js
+✓ should return correct Legifrance url (3ms)
+
+PASS normalizeIdcc.test.js
+✓ 0 should normalize as 0000 (1ms)
+✓ 5 should normalize as 0005
+✓ 12 should normalize as 0012
+✓ 123 should normalize as 0123 (1ms)
+✓ 1234 should normalize as 1234
+✓ 12345 should normalize as 12345
+
+PASS parseWeez.test.js
+✓ should parse weez content correctly (2ms)
+✓ should group idcc correctly (1ms)
+```
