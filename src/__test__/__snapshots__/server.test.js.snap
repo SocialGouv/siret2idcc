@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e : /api/v1/82161143100015 should return convention 1`] = `
+Array [
+  Object {
+    "active": true,
+    "date_publi": "1988-01-01T00:00:00.000Z",
+    "effectif": 857061,
+    "etat": "VIGUEUR_ETEN",
+    "id": "KALICONT000005635173",
+    "mtime": 1556652289,
+    "nature": "IDCC",
+    "num": "1486",
+    "texte_de_base": "KALITEXT000005679895",
+    "titre": "Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 15 décembre 1987. ",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635173",
+  },
+]
+`;
+
+exports[`e2e : invalid siret should return 422 1`] = `
+Object {
+  "error": "invalid SIRET given in the request",
+}
+`;
+
+exports[`e2e : unknown siret should return empty array 1`] = `Array []`;
