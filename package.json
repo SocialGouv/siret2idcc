@@ -17,7 +17,7 @@
     "test": "jest --runInBand"
   },
   "devDependencies": {
-    "@socialgouv/eslint-config-recommended": "0.9.3",
+    "@socialgouv/eslint-config-recommended": "0.10.0",
     "eslint": "6.1.0",
     "eslint-config-react": "1.1.7",
     "jest": "24.8.0",
