@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node src/index.js",
     "lint": "eslint src",
-    "test": "jest --runInBand"
+    "test": "env DATA_FILE=./src/__test__/input.csv jest"
   },
   "devDependencies": {
     "@socialgouv/eslint-config-recommended": "0.10.0",

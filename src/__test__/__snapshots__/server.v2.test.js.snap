@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e : /api/v2/82161143100015 should return convention 1`] = `
+Array [
+  Object {
+    "conventions": Array [
+      Object {
+        "active": true,
+        "date_publi": "1988-01-01T00:00:00.000Z",
+        "effectif": 857061,
+        "etat": "VIGUEUR_ETEN",
+        "id": "KALICONT000005635173",
+        "mtime": 1556652289,
+        "nature": "IDCC",
+        "num": "1486",
+        "shortTitle": "Bureaux D'études Techniques",
+        "texte_de_base": "KALITEXT000005679895",
+        "title": "Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 15 décembre 1987. ",
+        "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635173",
+      },
+    ],
+    "siret": "82161143100015",
+  },
+]
+`;
+
+exports[`e2e : /api/v2/82161143100015,82161143100016,82161143100017 should return conventions 1`] = `
+Array [
+  Object {
+    "conventions": Array [
+      Object {
+        "active": true,
+        "date_publi": "1988-01-01T00:00:00.000Z",
+        "effectif": 857061,
+        "etat": "VIGUEUR_ETEN",
+        "id": "KALICONT000005635173",
+        "mtime": 1556652289,
+        "nature": "IDCC",
+        "num": "1486",
+        "shortTitle": "Bureaux D'études Techniques",
+        "texte_de_base": "KALITEXT000005679895",
+        "title": "Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 15 décembre 1987. ",
+        "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635173",
+      },
+    ],
+    "siret": "82161143100015",
+  },
+  Object {
+    "conventions": Array [],
+    "siret": "82161143100016",
+  },
+  Object {
+    "conventions": Array [],
+    "siret": "82161143100017",
+  },
+]
+`;
+
+exports[`e2e : /api/v2/82161143100015,xxx,82161143100123,11111111111111 should return conventions 1`] = `
+Array [
+  Object {
+    "conventions": Array [
+      Object {
+        "active": true,
+        "date_publi": "1988-01-01T00:00:00.000Z",
+        "effectif": 857061,
+        "etat": "VIGUEUR_ETEN",
+        "id": "KALICONT000005635173",
+        "mtime": 1556652289,
+        "nature": "IDCC",
+        "num": "1486",
+        "shortTitle": "Bureaux D'études Techniques",
+        "texte_de_base": "KALITEXT000005679895",
+        "title": "Convention collective nationale des bureaux d'études techniques, des cabinets d'ingénieurs-conseils et des sociétés de conseils du 15 décembre 1987. ",
+        "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635173",
+      },
+    ],
+    "siret": "82161143100015",
+  },
+  Object {
+    "conventions": Array [],
+    "siret": "xxx",
+  },
+  Object {
+    "conventions": Array [],
+    "siret": "82161143100123",
+  },
+  Object {
+    "conventions": Array [],
+    "siret": "11111111111111",
+  },
+]
+`;
+
+exports[`e2e : empty call should return 404 1`] = `
+"<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+<meta charset=\\"utf-8\\">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /api/v2/</pre>
+</body>
+</html>
+"
+`;
+
+exports[`e2e : invalid siret 1`] = `
+Array [
+  Object {
+    "conventions": Array [],
+    "siret": "banzai",
+  },
+]
+`;
+
+exports[`e2e : unknown siret should return empty array 1`] = `
+Array [
+  Object {
+    "conventions": Array [],
+    "siret": "99999999999999",
+  },
+]
+`;

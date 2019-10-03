@@ -8,6 +8,8 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
+const isValidSiret = siret => siret && siret.match(/^\d{14}$/);
+
 // 82161143100015
 app.get("/api/v1/:siret", (req, res) => {
   const siret = req.params.siret;
@@ -17,6 +19,17 @@ app.get("/api/v1/:siret", (req, res) => {
       .json({ error: "invalid SIRET given in the request" });
   }
   const results = getConventions(siret);
+  return res.json(results);
+});
+
+// 82161143100015,82161143100016,82161143100017
+app.get("/api/v2/:sirets", (req, res) => {
+  const sirets = req.params.sirets;
+  const nums = sirets.split(",");
+  const results = nums.map(num => ({
+    siret: num,
+    conventions: (isValidSiret(num) && getConventions(num)) || []
+  }));
   return res.json(results);
 });
 
