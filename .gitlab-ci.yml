@@ -193,7 +193,7 @@ Deploy @siret2idcc/api  (prod):
 
 #
 .send_url_to_github_stage: &send_url_to_github_stage
-  stage: "Send Url to GitHub"
+  stage: "Send Url to GitHub (dev)"
   image:
     name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
   script:
@@ -203,7 +203,7 @@ Deploy @siret2idcc/api  (prod):
 
 #
 
-Send deployment url to Github (feature):
+Send deployment url to Github (dev):
   <<: *send_url_to_github_stage
   before_script:
     - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
