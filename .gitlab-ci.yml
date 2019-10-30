@@ -120,7 +120,7 @@ Register api image:
     - helm init --client-only
     - helm repo add mas-incubateur https://github.com/SocialGouv/helm-charts/releases/download/${HELM_CHART_VERSION}
     - envsubst < .gitlab-ci/values.yaml > .gitlab-ci/values-${APP_NAME}.yaml
-    - helm upgrade --install --wait --namespace standup-${NAMESPACE} --values=.gitlab-ci/values-${APP_NAME}.yaml ${HELM_RELEASE_NAME} mas-incubateur/webapp
+    - helm upgrade --install --wait --namespace ${APP_NAME}-${NAMESPACE} --values=.gitlab-ci/values-${APP_NAME}.yaml ${HELM_RELEASE_NAME} mas-incubateur/webapp
   allow_failure: false
 
 Deploy @siret2idcc/api (feature):
@@ -208,7 +208,7 @@ Send deployment url to Github (dev):
   before_script:
     - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
     - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}.
-    - export URL=https://${INGRESS_ENVIRONMENT_PREFIX}standup.${DOMAIN_NAME}/
+    - export URL=https://${INGRESS_ENVIRONMENT_PREFIX}${APP_NAME}.${DOMAIN_NAME}/
   environment:
     name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   except:
