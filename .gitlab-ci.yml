@@ -50,35 +50,34 @@ Quality tests:
 ###########################################
 
 #
+
 .get_github_id_stage: &get_github_id_stage
-  stage: "Prepare"
   image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
   before_script:
-    - envsubst < k8s/scripts/get-deploy-id.sh > k8s/scripts/get-github-deploy-id.sh
+    - envsubst < /scripts/get-deploy-id.sh > /scripts/get-github-deploy-id.sh
   script:
-    - sh k8s/scripts/get-github-deploy-id.sh
+    - sh /scripts/get-github-deploy-id.sh
   artifacts:
     paths:
       - github_deploy_id
-#
 
 Get Github Id (dev):
   <<: *get_github_id_stage
+  stage: "Prepare"
   environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   except:
     - master
+    - /^v.*/
 
 Get Github Id (prod):
   <<: *get_github_id_stage
+  stage: "Prepare"
   environment:
-    name: $PROD_ENVIRONMENT_NAME
+    name: ${MASTER_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   only:
-    - tags
+    - master
 
 ###########################################
 ###       REGISTER DOCKER IMAGES        ###
@@ -194,35 +193,24 @@ Deploy @siret2idcc/api  (prod):
 
 #
 .send_url_to_github_stage: &send_url_to_github_stage
+  stage: "Send Url to GitHub"
   image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
   script:
     - export DEPLOY_ID=$(cat github_deploy_id)
-    - envsubst < k8s/scripts/send-url.sh > k8s/scripts/send-url-to-github.sh
-    - sh k8s/scripts/send-url-to-github.sh $CI_COMMIT_REF_NAME
+    - envsubst < /scripts/send-url.sh > /scripts/send-url-to-github.sh
+    - sh /scripts/send-url-to-github.sh
+
 #
 
-Send deployment url to Github (dev):
+Send deployment url to Github (feature):
   <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (dev)"
   before_script:
-    - HASH_BRANCH_NAME=$(printf "$CI_COMMIT_REF_NAME" | sha1sum | cut -c1-5)
-    - export HASH_BRANCH_NAME=$HASH_BRANCH_NAME
-    - export URL=http://$HASH_BRANCH_NAME-siret2idcc.${CI_ENVIRONMENT_NAME}.social.gouv.fr/
+    - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
+    - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}.
+    - export URL=https://${INGRESS_ENVIRONMENT_PREFIX}standup.${DOMAIN_NAME}/
   environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   except:
     - master
-
-Send deployment url to Github (prod):
-  <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (prod)"
-  before_script:
-    - export URL=http://siret2idcc.${CI_ENVIRONMENT_NAME}/
-  environment:
-    name: $PROD_ENVIRONMENT_NAME
-  only:
-    - tags
+    - /^v.*/
