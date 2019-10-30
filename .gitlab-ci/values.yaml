@@ -8,6 +8,10 @@ image:
 
 deployment:
   port: ${PORT}
+  livenessProbe:
+    initialDelaySeconds: 30
+  readinessProbe:
+    initialDelaySeconds: 30
   resources:
     requests:
       cpu: 100m
