@@ -113,6 +113,7 @@ Register api image:
   image:
     name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/helm:${INFRA_HELM_VERSION}
   variables: &deploy_stage_variables
+    IMAGE_TAG: $CI_COMMIT_SHA
   script:
     - helm init --client-only
     - helm repo add mas-incubateur https://github.com/SocialGouv/helm-charts/releases/download/${HELM_CHART_VERSION}
