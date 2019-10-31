@@ -9,15 +9,19 @@ image:
 deployment:
   port: ${PORT}
   livenessProbe:
-    initialDelaySeconds: 60
+    path: /healtz
+    initialDelaySeconds: 30
+    periodSeconds: 5
   readinessProbe:
-    initialDelaySeconds: 60
+    path: /healtz
+    initialDelaySeconds: 30
+    periodSeconds: 5
   resources:
     requests:
       cpu: 100m
       memory: 128Mi
     limits:
-      cpu: 200m
+      cpu: 500m
       memory: 1200Mi
 service:
   port: ${PORT}
