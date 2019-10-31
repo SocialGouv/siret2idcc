@@ -33,7 +33,7 @@ app.get("/api/v2/:sirets", (req, res) => {
   return res.json(results);
 });
 
-app.get("/healtz", (req, res) => {
+app.get("/healthz", (req, res) => {
   return res.json({ success: true });
 });
 

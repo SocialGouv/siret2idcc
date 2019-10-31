@@ -9,11 +9,11 @@ image:
 deployment:
   port: ${PORT}
   livenessProbe:
-    path: /healtz
+    path: /healthz
     initialDelaySeconds: 30
     periodSeconds: 5
   readinessProbe:
-    path: /healtz
+    path: /healthz
     initialDelaySeconds: 30
     periodSeconds: 5
   resources:
