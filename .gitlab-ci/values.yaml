@@ -21,8 +21,10 @@ deployment:
       cpu: 100m
       memory: 128Mi
     limits:
-      cpu: 500m
+      cpu: 1000m
       memory: 1200Mi
+env:
+  PORT: ${PORT}
 service:
   port: ${PORT}
 
