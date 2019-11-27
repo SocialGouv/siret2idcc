@@ -33,6 +33,10 @@ app.get("/api/v2/:sirets", (req, res) => {
   return res.json(results);
 });
 
+app.get("/healthz", (req, res) => {
+  return res.json({ success: true });
+});
+
 if (require.main === module) {
   app.listen(port, () =>
     console.log(`siret2idcc API listening on http://127.0.0.1:${port}`)

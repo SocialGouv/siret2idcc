@@ -12,7 +12,7 @@
     "express": "^4.16.4"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "NODE_OPTIONS='--max-old-space-size=4096' node src/index.js",
     "lint": "eslint src",
     "test": "env DATA_FILE=./src/__test__/input.csv jest"
   },

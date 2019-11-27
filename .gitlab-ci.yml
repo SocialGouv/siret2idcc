@@ -1,15 +1,23 @@
 ---
-include:
-  - "/k8s/.deploy-siret2idcc.yml"
-
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375
   DOCKER_VERSION: "18.06"
   IMAGE_INFRA_BASE_NAME: "infra/images-docker"
-  DEV_ENVIRONMENT_NAME: "dev.factory"
-  PROD_ENVIRONMENT_NAME: "incubateur"
-  API_PORT: 4000
+  DEV_ENVIRONMENT_NAME: "dev"
+
+  INFRA_GIT_DEPLOY_VERSION: "1.0"
+  INFRA_GIT_TAG_RELEASE_VERSION: "1.0"
+  INFRA_HELM_VERSION: "1.0"
+  INFRA_CURL_VERSION: "1.0"
+  PORT: 3000
+  CLUSTER_NAME: "dev"
+  APP_NAME: "siret2idcc"
+  FEATURE_ENVIRONMENT_NAME: "feature"
+  MASTER_ENVIRONMENT_NAME: "master"
+  PREPROD_ENVIRONMENT_NAME: "prep"
+  PROD_ENVIRONMENT_NAME: "prod"
+  HELM_CHART_VERSION: "v2.1.0"
 
 stages:
   - "Code Quality"
@@ -19,7 +27,6 @@ stages:
   - "Send Url to GitHub (dev)"
   - "Deploy prod"
   - "Send Url to GitHub (prod)"
-
 
 .quality_stage: &quality_stage
   stage: "Code Quality"
@@ -43,35 +50,34 @@ Quality tests:
 ###########################################
 
 #
+
 .get_github_id_stage: &get_github_id_stage
-  stage: "Prepare"
   image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
   before_script:
-    - envsubst < k8s/scripts/get-deploy-id.sh > k8s/scripts/get-github-deploy-id.sh
+    - envsubst < /scripts/get-deploy-id.sh > /scripts/get-github-deploy-id.sh
   script:
-    - sh k8s/scripts/get-github-deploy-id.sh
+    - sh /scripts/get-github-deploy-id.sh
   artifacts:
     paths:
       - github_deploy_id
-#
 
 Get Github Id (dev):
   <<: *get_github_id_stage
+  stage: "Prepare"
   environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   except:
     - master
+    - /^v.*/
 
 Get Github Id (prod):
   <<: *get_github_id_stage
+  stage: "Prepare"
   environment:
-    name: $PROD_ENVIRONMENT_NAME
+    name: ${MASTER_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   only:
-    - tags
+    - master
 
 ###########################################
 ###       REGISTER DOCKER IMAGES        ###
@@ -97,47 +103,60 @@ Register api image:
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/api
-
+    IMAGE_NAME: $CI_REGISTRY_IMAGE
 
 ###########################################
 ###            DEPLOY TO K8S            ###
 ###########################################
 
-#
 .deploy_stage: &deploy_stage
-  dependencies: []
+  image:
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/helm:${INFRA_HELM_VERSION}
   variables: &deploy_stage_variables
-    SIRET2IDCC_REGISTRY: $CI_REGISTRY_IMAGE
     IMAGE_TAG: $CI_COMMIT_SHA
-#
+  script:
+    - helm init --client-only
+    - helm repo add mas-incubateur https://github.com/SocialGouv/helm-charts/releases/download/${HELM_CHART_VERSION}
+    - envsubst < .gitlab-ci/values.yaml > .gitlab-ci/values-${APP_NAME}.yaml
+    - helm upgrade --install --wait --namespace ${APP_NAME}-${NAMESPACE} --values=.gitlab-ci/values-${APP_NAME}.yaml ${HELM_RELEASE_NAME} mas-incubateur/webapp
+  allow_failure: false
 
-# Dev Environment
-
-Deploy @siret2idcc/api (dev):
-  <<: *deploy_stage
-  extends: .deploy-siret2idcc-k8s-dev
+Deploy @siret2idcc (feature):
   stage: "Deploy dev"
+  <<: *deploy_stage
   variables:
     <<: *deploy_stage_variables
-    PORT: $API_PORT
+    NAMESPACE: ${FEATURE_ENVIRONMENT_NAME}
+    LETSENCRYPT_ISSUER: letsencrypt-staging
+    IMAGE_TAG: $CI_COMMIT_SHA
   environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
+    url: https://${INGRESS_ENVIRONMENT_PREFIX}${APP_NAME}.${DOMAIN_NAME}
+  before_script:
+    - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
+    - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}. # "." at the end of line is needed to deploy into hors prod environment
+    - export HELM_RELEASE_NAME=${APP_NAME}-${HASH_BRANCH_NAME}-${FEATURE_ENVIRONMENT_NAME}
+    - export HASH_BRANCH_NAME=-${HASH_BRANCH_NAME}
   except:
     - master
+    - /^v.*/
 
-Deploy @siret2idcc/api (prod):
-  <<: *deploy_stage
-  extends: .deploy-siret2idcc-k8s-prod
+Deploy @siret2idcc (prod):
   stage: "Deploy prod"
+  <<: *deploy_stage
   variables:
     <<: *deploy_stage_variables
-    PORT: $API_PORT
+    NAMESPACE: ${PROD_ENVIRONMENT_NAME}
+    INGRESS_ENVIRONMENT_PREFIX: ""
+    LETSENCRYPT_ISSUER: letsencrypt-prod
+    IMAGE_TAG: $CI_COMMIT_SHA
   environment:
-    name: $PROD_ENVIRONMENT_NAME
-  when: manual
+    name: ${PROD_ENVIRONMENT_NAME}
+    url: https://${APP_NAME}.${DOMAIN_NAME}
+  before_script:
+    - export HELM_RELEASE_NAME=${APP_NAME}-${PROD_ENVIRONMENT_NAME}
+  only:
+    - master
 
 ###########################################
 ###         SEND URL TO GITHUB          ###
@@ -145,36 +164,24 @@ Deploy @siret2idcc/api (prod):
 
 #
 .send_url_to_github_stage: &send_url_to_github_stage
+  stage: "Send Url to GitHub (dev)"
   image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
   script:
     - export DEPLOY_ID=$(cat github_deploy_id)
-    - envsubst < k8s/scripts/send-url.sh > k8s/scripts/send-url-to-github.sh
-    - sh k8s/scripts/send-url-to-github.sh $CI_COMMIT_REF_NAME
+    - envsubst < /scripts/send-url.sh > /scripts/send-url-to-github.sh
+    - sh /scripts/send-url-to-github.sh
+
 #
 
 Send deployment url to Github (dev):
   <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (dev)"
   before_script:
-    - HASH_BRANCH_NAME=$(printf "$CI_COMMIT_REF_NAME" | sha1sum | cut -c1-5)
-    - export HASH_BRANCH_NAME=$HASH_BRANCH_NAME
-    - export URL=http://$HASH_BRANCH_NAME-siret2idcc.${CI_ENVIRONMENT_NAME}.social.gouv.fr/
+    - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
+    - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}.
+    - export URL=https://${INGRESS_ENVIRONMENT_PREFIX}${APP_NAME}.${DOMAIN_NAME}/
   environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
   except:
     - master
-
-Send deployment url to Github (prod):
-  <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (prod)"
-  before_script:
-    - export URL=http://siret2idcc.${CI_ENVIRONMENT_NAME}/
-  environment:
-    name: $PROD_ENVIRONMENT_NAME
-  only:
-    - tags
-
+    - /^v.*/
