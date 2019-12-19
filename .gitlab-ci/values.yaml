@@ -22,7 +22,7 @@ deployment:
       memory: 128Mi
     limits:
       cpu: 1000m
-      memory: 1024Mi
+      memory: 2560Mi
 service:
   port: ${PORT}
 
