@@ -1,4 +1,10 @@
 ---
+
+include:
+  - project: SocialGouv/gitlab-ci-yml
+    file: /base_notify_github_stage.yml
+    ref: v4.0.1
+
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375
@@ -22,10 +28,10 @@ stages:
   - "Code Quality"
   - "Prepare"
   - "Registration"
-  - "Deploy dev"
+  - "Deploy"
   - "Send Url to GitHub (dev)"
-  - "Deploy prod"
   - "Send Url to GitHub (prod)"
+  - "Notify Finished Deployment"
 
 .quality_stage: &quality_stage
   stage: "Code Quality"
@@ -50,33 +56,22 @@ Quality tests:
 
 #
 
-.get_github_id_stage: &get_github_id_stage
-  image:
-    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
-  before_script:
-    - envsubst < /scripts/get-deploy-id.sh > /scripts/get-github-deploy-id.sh
-  script:
-    - sh /scripts/get-github-deploy-id.sh
-  artifacts:
-    paths:
-      - github_deploy_id
+Notify Starting Deployment:
+  extends: .base_notify_pending_stage
+  stage: Deploy
 
-Get Github Id (dev):
-  <<: *get_github_id_stage
-  stage: "Prepare"
-  environment:
-    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
-  except:
-    - master
-    - /^v.*/
+Notify Fail:
+  extends: .base_notify_fail_stage
+  stage: Notify Finished Deployment
+  dependencies:
+    - Notify Starting Deployment
 
-Get Github Id (prod):
-  <<: *get_github_id_stage
-  stage: "Prepare"
-  environment:
-    name: ${MASTER_ENVIRONMENT_NAME}-${CLUSTER_NAME}
-  only:
-    - master
+Notify Success:
+  extends: .base_notify_success_stage
+  stage: Notify Finished Deployment
+  dependencies:
+    - Notify Starting Deployment
+
 
 ###########################################
 ###       REGISTER DOCKER IMAGES        ###
@@ -121,7 +116,7 @@ Register api image:
   allow_failure: false
 
 Deploy @siret2idcc (feature):
-  stage: "Deploy dev"
+  stage: "Deploy"
   <<: *deploy_stage
   variables:
     <<: *deploy_stage_variables
@@ -141,7 +136,7 @@ Deploy @siret2idcc (feature):
     - /^v.*/
 
 Deploy @siret2idcc (prod):
-  stage: "Deploy prod"
+  stage: "Deploy"
   <<: *deploy_stage
   variables:
     <<: *deploy_stage_variables
