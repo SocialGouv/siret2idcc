@@ -9,7 +9,7 @@
   "dependencies": {
     "@socialgouv/kali-data": "^1.2.98",
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.17.1"
   },
   "scripts": {
     "start": "NODE_OPTIONS='--max-old-space-size=4096' node src/index.js",
