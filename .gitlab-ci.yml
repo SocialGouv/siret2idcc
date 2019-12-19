@@ -3,7 +3,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375
   DOCKER_VERSION: "18.06"
-  IMAGE_INFRA_BASE_NAME: "infra/images-docker"
+  IMAGE_INFRA_BASE_NAME: "socialgouv/docker"
   DEV_ENVIRONMENT_NAME: "dev"
 
   INFRA_GIT_DEPLOY_VERSION: "0.19.0"
