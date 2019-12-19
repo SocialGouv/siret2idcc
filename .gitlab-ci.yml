@@ -1,16 +1,186 @@
-#
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
-
-include:
-  - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops_simple_app.yml
-    ref: v4.0.1
-
+---
 variables:
-  PROJECT: "siret2idcc"
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_VERSION: "18.06"
+  IMAGE_INFRA_BASE_NAME: "infra/images-docker"
+  DEV_ENVIRONMENT_NAME: "dev"
+
+  INFRA_GIT_DEPLOY_VERSION: "0.19.0"
+  INFRA_HELM_VERSION: "0.19.0"
+  INFRA_CURL_VERSION: "0.19.0"
   PORT: 3000
-  VALUES_FILE: ./.k8s/values.yml
+  CLUSTER_NAME: "dev"
+  APP_NAME: "siret2idcc"
+  FEATURE_ENVIRONMENT_NAME: "feature"
+  MASTER_ENVIRONMENT_NAME: "master"
+  PREPROD_ENVIRONMENT_NAME: "prep"
+  PROD_ENVIRONMENT_NAME: "prod"
+  HELM_CHART_VERSION: "v2.1.0"
+
+stages:
+  - "Code Quality"
+  - "Prepare"
+  - "Registration"
+  - "Deploy dev"
+  - "Send Url to GitHub (dev)"
+  - "Deploy prod"
+  - "Send Url to GitHub (prod)"
+
+.quality_stage: &quality_stage
+  stage: "Code Quality"
+  image: node:12-alpine
+  before_script:
+    - yarn --frozen-lockfile
+#
+
+Quality tests:
+  <<: *quality_stage
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+  script:
+    - yarn lint
+    - yarn test
+
+###########################################
+###               PREPARE               ###
+###########################################
+
+#
+
+.get_github_id_stage: &get_github_id_stage
+  image:
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
+  before_script:
+    - envsubst < /scripts/get-deploy-id.sh > /scripts/get-github-deploy-id.sh
+  script:
+    - sh /scripts/get-github-deploy-id.sh
+  artifacts:
+    paths:
+      - github_deploy_id
+
+Get Github Id (dev):
+  <<: *get_github_id_stage
+  stage: "Prepare"
+  environment:
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
+  except:
+    - master
+    - /^v.*/
+
+Get Github Id (prod):
+  <<: *get_github_id_stage
+  stage: "Prepare"
+  environment:
+    name: ${MASTER_ENVIRONMENT_NAME}-${CLUSTER_NAME}
+  only:
+    - master
+
+###########################################
+###       REGISTER DOCKER IMAGES        ###
+###########################################
+
+#
+.register_stage: &register_stage
+  stage: "Registration"
+  image: docker:$DOCKER_VERSION
+  services:
+    - docker:$DOCKER_VERSION-dind
+  before_script:
+    - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u gitlab-ci-token --password-stdin
+    - docker pull $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA || true
+  script:
+    - echo "Build $IMAGE_NAME:$CI_COMMIT_SHA from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA"
+    - docker build --cache-from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA -t $IMAGE_NAME:$CI_COMMIT_SHA -f $DOCKERFILE_PATH $CONTEXT
+    - docker push $IMAGE_NAME
+#
+
+Register api image:
+  <<: *register_stage
+  variables:
+    CONTEXT: .
+    DOCKERFILE_PATH: Dockerfile
+    IMAGE_NAME: $CI_REGISTRY_IMAGE
+
+###########################################
+###            DEPLOY TO K8S            ###
+###########################################
+
+.deploy_stage: &deploy_stage
+  image:
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/helm:${INFRA_HELM_VERSION}
+  variables: &deploy_stage_variables
+    IMAGE_TAG: $CI_COMMIT_SHA
+  script:
+    - helm init --client-only
+    - helm repo add mas-incubateur https://github.com/SocialGouv/helm-charts/releases/download/${HELM_CHART_VERSION}
+    - envsubst < .gitlab-ci/values.yaml > .gitlab-ci/values-${APP_NAME}.yaml
+    - helm upgrade --install --wait --namespace ${APP_NAME}-${NAMESPACE} --values=.gitlab-ci/values-${APP_NAME}.yaml ${HELM_RELEASE_NAME} mas-incubateur/webapp
+  allow_failure: false
+
+Deploy @siret2idcc (feature):
+  stage: "Deploy dev"
+  <<: *deploy_stage
+  variables:
+    <<: *deploy_stage_variables
+    NAMESPACE: ${FEATURE_ENVIRONMENT_NAME}
+    LETSENCRYPT_ISSUER: letsencrypt-staging
+    IMAGE_TAG: $CI_COMMIT_SHA
+  environment:
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
+    url: https://${INGRESS_ENVIRONMENT_PREFIX}${APP_NAME}.${DOMAIN_NAME}
+  before_script:
+    - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
+    - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}. # "." at the end of line is needed to deploy into hors prod environment
+    - export HELM_RELEASE_NAME=${APP_NAME}-${HASH_BRANCH_NAME}-${FEATURE_ENVIRONMENT_NAME}
+    - export HASH_BRANCH_NAME=-${HASH_BRANCH_NAME}
+  except:
+    - master
+    - /^v.*/
+
+Deploy @siret2idcc (prod):
+  stage: "Deploy prod"
+  <<: *deploy_stage
+  variables:
+    <<: *deploy_stage_variables
+    NAMESPACE: ${PROD_ENVIRONMENT_NAME}
+    INGRESS_ENVIRONMENT_PREFIX: ""
+    LETSENCRYPT_ISSUER: letsencrypt-prod
+    IMAGE_TAG: $CI_COMMIT_SHA
+  environment:
+    name: ${PROD_ENVIRONMENT_NAME}
+    url: https://${APP_NAME}.${DOMAIN_NAME}
+  before_script:
+    - export HELM_RELEASE_NAME=${APP_NAME}-${PROD_ENVIRONMENT_NAME}
+  only:
+    - master
+
+###########################################
+###         SEND URL TO GITHUB          ###
+###########################################
+
+#
+.send_url_to_github_stage: &send_url_to_github_stage
+  stage: "Send Url to GitHub (dev)"
+  image:
+    name: ${CI_REGISTRY}/${IMAGE_INFRA_BASE_NAME}/git-deploy:${INFRA_GIT_DEPLOY_VERSION}
+  script:
+    - export DEPLOY_ID=$(cat github_deploy_id)
+    - envsubst < /scripts/send-url.sh > /scripts/send-url-to-github.sh
+    - sh /scripts/send-url-to-github.sh
+
+#
+
+Send deployment url to Github (dev):
+  <<: *send_url_to_github_stage
+  before_script:
+    - HASH_BRANCH_NAME=$(printf "${CI_COMMIT_REF_NAME}" | sha1sum | cut -c1-5)
+    - export INGRESS_ENVIRONMENT_PREFIX=${HASH_BRANCH_NAME}.
+    - export URL=https://${INGRESS_ENVIRONMENT_PREFIX}${APP_NAME}.${DOMAIN_NAME}/
+  environment:
+    name: ${FEATURE_ENVIRONMENT_NAME}-${CLUSTER_NAME}
+  except:
+    - master
+    - /^v.*/
