@@ -3,7 +3,6 @@ const path = require("path");
 const kali = require("@socialgouv/kali-data/data/index.json");
 
 const parseWeez = require("./parseWeez");
-const normalizeIdcc = require("./normalizeIdcc");
 const getConventionUrl = require("./getConventionUrl");
 
 const inFile =
@@ -12,7 +11,7 @@ const inFile =
 const sirets = parseWeez(fs.readFileSync(inFile).toString());
 
 const getConvention = idcc =>
-  kali.find(cc => normalizeIdcc(cc.num) === normalizeIdcc(idcc));
+  kali.find(cc => parseInt(cc.num, 10) === parseInt(idcc, 10));
 
 const getConventions = siret => {
   const match = sirets[siret];
