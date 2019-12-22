@@ -1,14 +1,9 @@
-const fs = require("fs");
-const path = require("path");
 const kali = require("@socialgouv/kali-data/data/index.json");
 
-const parseWeez = require("./parseWeez");
+const getSirets = require("./getSirets");
 const getConventionUrl = require("./getConventionUrl");
 
-const inFile =
-  process.env.DATA_FILE || path.join(__dirname, `../data/WEEZ.csv`);
-
-const sirets = parseWeez(fs.readFileSync(inFile).toString());
+const sirets = getSirets();
 
 const getConvention = idcc =>
   kali.find(cc => parseInt(cc.num, 10) === parseInt(idcc, 10));
