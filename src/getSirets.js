@@ -8,7 +8,8 @@ const lineReader = require("readline").createInterface({
   input: fs.createReadStream(inFile)
 });
 
-const isValidRow = ([, siret, idcc]) => !!siret && !!idcc && idcc !== "0";
+const isValidRow = ([, siret, idcc]) =>
+  !!siret && !!idcc && !isNaN(idcc) && idcc !== "0";
 
 const sirets = {};
 
