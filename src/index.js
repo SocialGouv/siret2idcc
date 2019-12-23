@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const pkg = require("../package.json");
 
 const getConventions = require("./getConventions");
 
@@ -35,6 +36,13 @@ app.get("/api/v2/:sirets", (req, res) => {
 
 app.get("/healthz", (req, res) => {
   return res.json({ success: true });
+});
+
+app.get("/", (req, res) => {
+  return res.json({
+    url: "https://github.com/SocialGouv/siret2idcc",
+    version: process.env.VERSION || pkg.version
+  });
 });
 
 if (require.main === module) {
