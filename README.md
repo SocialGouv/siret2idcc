@@ -4,7 +4,7 @@
 
 A very simple API that exposes a file that maps SIRETs to IDCCs.
 
-Available at https://siret2idcc.incubateur.social.gouv.fr/api/v2/80258570300027
+Available at https://siret2idcc.fabrique.social.gouv.fr/api/v2/80258570300027
 
 Conventions data is extracted from [kali-data](https://github.com/SocialGouv/kali-data).
 
@@ -22,9 +22,9 @@ In production, you can use:
 
 ### SIRET search `/api/v2/:siret`
 
-`curl https://siret2idcc.incubateur.social.gouv.fr/api/v2/82161143100015`
+`curl https://siret2idcc.fabrique.social.gouv.fr/api/v2/82161143100015`
 
-Or with multiple sirets : `curl https://siret2idcc.incubateur.social.gouv.fr/api/v2/82161143100015,80258570300027`
+Or with multiple sirets : `curl https://siret2idcc.fabrique.social.gouv.fr/api/v2/82161143100015,80258570300027`
 
 It will return a JSON array :
 
