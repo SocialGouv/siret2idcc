@@ -2,12 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 ---
-
 image:
   repository: registry.gitlab.factory.social.gouv.fr/socialgouv/siret2idcc
 
 deployment:
-
   port: ${PORT}
 
   livenessProbe:
@@ -21,11 +19,11 @@ deployment:
       memory: 128Mi
     limits:
       cpu: 1000m
-      memory: 2560Mi
+      memory: 1024Mi
 
   env:
-  - name: PORT
-    value: "${PORT}"
+    - name: PORT
+      value: "${PORT}"
 
 service:
   port: ${PORT}
@@ -37,11 +35,10 @@ ingress:
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: "azure/application-gateway"
   hosts:
-  - host: "siret2idcc.dev.fabrique.social.gouv.fr"
-    paths:
-      - /
+    - host: "siret2idcc.dev.fabrique.social.gouv.fr"
+      paths:
+        - /
   tls:
-  - hosts:
-      - "siret2idcc.dev.fabrique.social.gouv.fr"
-    secretName: siret2idcc-certificate
-...
+    - hosts:
+        - "siret2idcc.dev.fabrique.social.gouv.fr"
+      secretName: siret2idcc-certificate

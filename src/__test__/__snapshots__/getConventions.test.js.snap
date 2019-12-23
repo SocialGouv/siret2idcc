@@ -8,6 +8,20 @@ exports[`can get conventions for 82161143100015 1`] = `
 Array [
   Object {
     "active": true,
+    "date_publi": "2005-01-01T00:00:00.000Z",
+    "effectif": 63554,
+    "etat": "VIGUEUR_ETEN",
+    "id": "KALICONT000005635594",
+    "mtime": 1562096111,
+    "nature": "IDCC",
+    "num": 1483,
+    "shortTitle": "Commerce de détail de l'habillement et des articles textiles",
+    "texte_de_base": "KALITEXT000005675211",
+    "title": "Convention collective nationale du commerce de détail de l'habillement et des articles textiles du 25 novembre 1987, révisée par avenant du 17 juin 2004",
+    "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635594",
+  },
+  Object {
+    "active": true,
     "date_publi": "1988-01-01T00:00:00.000Z",
     "effectif": 857061,
     "etat": "VIGUEUR_ETEN",

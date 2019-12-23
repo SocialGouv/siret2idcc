@@ -39,7 +39,7 @@ app.get("/healthz", (req, res) => {
 
 if (require.main === module) {
   app.listen(port, () =>
-    console.log(`siret2idcc API listening on http://127.0.0.1:${port}`)
+    console.log(`✅ siret2idcc API listening on http://127.0.0.1:${port}`)
   );
 }
 
