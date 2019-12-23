@@ -1,4 +1,4 @@
-# Default values for Mas webapp. https://github.com/SocialGouv/helm-charts/blob/master/webapp/values.yaml
+# Default values for Mas webapp. https://github.com/SocialGouv/helm-charts/blob/master/charts/webapp/values.yaml
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 ---
@@ -24,6 +24,8 @@ deployment:
   env:
     - name: PORT
       value: "${PORT}"
+    - name: VERSION
+      value: "${CI_COMMIT_SHORT_SHA}"
 
 service:
   port: ${PORT}
