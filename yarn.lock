@@ -365,10 +365,10 @@
     eslint-plugin-jest "^23.1.1"
     eslint-plugin-prettier "~3.1.2"
 
-"@socialgouv/kali-data@^1.2.100":
-  version "1.2.100"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-1.2.100.tgz#9ab2e95b9555ce405e30dabce7f7802aab071e0c"
-  integrity sha512-RQezHt17QNEW87m6sVX1DQkaWypg3c4939OLrbC9m23r17e5kph78cJHrl7rNDAEsRdZA/BRT9DpuSz0edQp4g==
+"@socialgouv/kali-data@^1.2.101":
+  version "1.2.101"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-1.2.101.tgz#5f8c2495dd452ec5c3c640d870483c98b89e7cc0"
+  integrity sha512-07H3b5RMed1OwJLtbpray+Xt2usAFy+P/SJJGflD3Gy3qd8Imjwlhi6V9x/kYQPDxFyyvnBHEm6gqnus/S6RhQ==
   dependencies:
     "@socialgouv/dila-api-client" "^1.1.0"
     p-map "^3.0.0"
