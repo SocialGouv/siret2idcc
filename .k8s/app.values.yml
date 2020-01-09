@@ -39,7 +39,9 @@ ingress:
   hosts:
     - host: "siret2idcc.dev.fabrique.social.gouv.fr"
       paths:
-        - /
+        - path: /
+          servicePort: ${PORT}
+
   tls:
     - hosts:
         - "siret2idcc.dev.fabrique.social.gouv.fr"
