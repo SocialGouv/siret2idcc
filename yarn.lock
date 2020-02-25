@@ -401,20 +401,20 @@
     p-all "^2.1.0"
     simple-oauth2 "^3.1.0"
 
-"@socialgouv/eslint-config-recommended@0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.16.0.tgz#12009fce089a85ecba9b13ffed540a3f6714f793"
-  integrity sha512-miNkLTmYYT0lVHTn3sUMH6t9N4H6rEKBAUMhSgi6ZeWL0HYBsvZlMDSlATeTcmD7HvJJ5F/LuF5uWOTtR+1cAQ==
+"@socialgouv/eslint-config-recommended@0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.17.0.tgz#ede5fa2b80e7e009aff3b8a31c31f79e422de975"
+  integrity sha512-aX9+TehWxdUWxfKnFT/1EXBVfrfI/gYAc2UOchAPtKk5LTHfrnVBUsP3JStN6T0m2BDkM0XT5tQG2aLqwM2O5A==
   dependencies:
     eslint-config-prettier "~6.10.0"
-    eslint-plugin-import "~2.20.0"
-    eslint-plugin-jest "~23.6.0"
+    eslint-plugin-import "~2.20.1"
+    eslint-plugin-jest "~23.8.0"
     eslint-plugin-prettier "~3.1.2"
 
-"@socialgouv/kali-data@^1.3.11":
-  version "1.3.11"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-1.3.11.tgz#ce730aa61a39b5ca7e4f826c801e5760118ca9e6"
-  integrity sha512-qcGShU7RXrlz4T5dJ7c6OvcRzDlRSsx82pSMCkwtPZkFXQPZ2cMN13M+IbPTB75hvkfeohv/aqvz0/kY4+mhyw==
+"@socialgouv/kali-data@^1.3.12":
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kali-data/-/kali-data-1.3.12.tgz#92a7f9f81c374cd00caf44b68aab1e717398cfa1"
+  integrity sha512-hkfrskG/eyK6m2e4prXxRrQMOguc3EHcoN7y1P5Ym3p4JUlyI4+UF2SXDzo7uM3f9VXIO2aDYpR8cIDcS8MLyg==
   dependencies:
     "@socialgouv/dila-api-client" "^1.1.0"
     p-map "^3.0.0"
@@ -1383,10 +1383,10 @@ eslint-module-utils@^2.4.1:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-import@~2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.20.0.tgz#d749a7263fb6c29980def8e960d380a6aa6aecaa"
-  integrity sha512-NK42oA0mUc8Ngn4kONOPsPB1XhbUvNHqF+g307dPV28aknPoiNnKLFd9em4nkswwepdF5ouieqv5Th/63U7YJQ==
+eslint-plugin-import@~2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.20.1.tgz#802423196dcb11d9ce8435a5fc02a6d3b46939b3"
+  integrity sha512-qQHgFOTjguR+LnYRoToeZWT62XM55MBVXObHM6SKFd1VzDcX/vqT1kAz8ssqigh5eMj8qXcRoXXGZpPP6RfdCw==
   dependencies:
     array-includes "^3.0.3"
     array.prototype.flat "^1.2.1"
@@ -1401,13 +1401,12 @@ eslint-plugin-import@~2.20.0:
     read-pkg-up "^2.0.0"
     resolve "^1.12.0"
 
-eslint-plugin-jest@~23.6.0:
-  version "23.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.6.0.tgz#508b32f80d44058c8c01257c0ee718cfbd521e9d"
-  integrity sha512-GH8AhcFXspOLqak7fqnddLXEJsrFyvgO8Bm60SexvKSn1+3rWYESnCiWUOCUcBTprNSDSE4CtAZdM4EyV6gPPw==
+eslint-plugin-jest@~23.8.0:
+  version "23.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.8.0.tgz#c978f959fa8395801742d13c5a3125a986d2661e"
+  integrity sha512-DKXmLxguZ1Lru4u5YM12ko3WLq6gqo7dhV2b63K731+/PNyZ/Ff6NGONQsGUtPLG9zU3kdz/N+2LTbweNZifeg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
-    micromatch "^4.0.2"
 
 eslint-plugin-prettier@~3.1.2:
   version "3.1.2"
