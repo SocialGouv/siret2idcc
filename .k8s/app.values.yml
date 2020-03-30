@@ -10,8 +10,10 @@ deployment:
 
   livenessProbe:
     path: /healthz
+    port: ${PORT}
   readinessProbe:
     path: /healthz
+    port: ${PORT}
 
   resources:
     requests:
