@@ -1,13 +1,16 @@
----
-
 include:
-- project: SocialGouv/gitlab-ci-yml
-  file: /autodevops_simple_app.yml
-  ref: v10.0.0
+  - project: SocialGouv/gitlab-ci-yml
+    file: /autodevops.yml
+    ref: v17.3.0
 
 variables:
-  PROJECT: "siret2idcc"
-  PORT: 4000
-  VALUES_FILE: ./.k8s/app.values.yml
+  AUTO_DEVOPS_RELEASE_AUTO: "🔖"
+  AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
 
-...
+# NOTE(julienbouquillon): use custom register job
+# By default, kosko-charts use a "/app" for default docker images names
+# TODO: discuss
+Register image:
+  extends: .autodevops_register_image
+  variables:
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
