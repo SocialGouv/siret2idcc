@@ -21,7 +21,7 @@
     "@socialgouv/eslint-config-recommended": "1.27.0",
     "eslint": "7.7.0",
     "eslint-config-react": "1.1.7",
-    "jest": "25.5.2",
+    "jest": "26.4.2",
     "prettier": "1.19.1",
     "supertest": "4.0.2"
   }
