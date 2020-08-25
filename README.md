@@ -83,7 +83,7 @@ etat             | Etat de la convention : VIGUEUR ou VIGUEUR_ETEN (étendue)
 id               | Identifiant interne (DILA) de la convention
 nature           | Toujours IDCC (ID de convention collective)
 num              | Numéro IDCC
-texte_de_base    | Identifiant interne du texte de base de la convention collective
+texte_de_base    | Identifiant interne (DILA) du texte de base de la convention collective
 title            | Titre historique de la convention collective
 shortTitle       | Titre abrégé
 url              | URL de la convention sur legifrance
