@@ -1,4 +1,4 @@
-# siret2idcc [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc/commits/master)
+# siret2idcc
 
 ![](https://i.imgur.com/gSe54sx.png)
 
@@ -70,6 +70,23 @@ It will return a JSON array :
     }
 ]
 ```
+
+### Données renvoyées
+
+Toutes les données renvoyées sont issues de la [base KALI de la DILA](https://www.data.gouv.fr/fr/datasets/kali-conventions-collectives-nationales/)
+
+Champ            | Description
+-----------------|-----------------------------------------------------------------------------
+active           | La convention est-elle encore active ?
+date_publi       | Date de mise à jour de la convention
+etat             | Etat de la convention : VIGUEUR ou VIGUEUR_ETEN (étendue)
+id               | Identifiant interne (DILA) de la convention
+nature           | Toujours IDCC (ID de convention collective)
+num              | Numéro IDCC
+texte_de_base    | Identifiant interne (DILA) du texte de base de la convention collective
+title            | Titre historique de la convention collective
+shortTitle       | Titre abrégé
+url              | URL de la convention sur legifrance
 
 ## Tests
 
