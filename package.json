@@ -15,7 +15,8 @@
     "start": "node src/index.js",
     "lint": "eslint src",
     "test": "env DATA_FILE=./src/__test__/input.csv jest",
-    "build": "echo 'Nothing to build'"
+    "build": "echo 'Nothing to build'",
+    "k8s": "yarn --silent --cwd .k8s"
   },
   "devDependencies": {
     "@socialgouv/eslint-config-recommended": "1.27.0",
