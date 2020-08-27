@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/SocialGouv/siret2idcc/compare/v1.0.1...v1.0.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* rm PRODUCTION_NAMESPACE ([01488fd](https://github.com/SocialGouv/siret2idcc/commit/01488fd686aa4c603287c14612f913d7a3791254))
+
 ## [1.0.1](https://github.com/SocialGouv/siret2idcc/compare/v1.0.0...v1.0.1) (2020-08-27)
 
 
