@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/SocialGouv/siret2idcc/compare/v1.0.2...v1.1.0) (2020-10-07)
+
+
+### Features
+
+* update WEEZ data 0720 ([#125](https://github.com/SocialGouv/siret2idcc/issues/125)) ([26c6dd2](https://github.com/SocialGouv/siret2idcc/commit/26c6dd245989259eb8cad77e38ef52cce62d6d9f))
+
 ## [1.0.2](https://github.com/SocialGouv/siret2idcc/compare/v1.0.1...v1.0.2) (2020-08-27)
 
 
