@@ -5,7 +5,7 @@ exports[`kosko generate --preprod 1`] = `
 metadata:
   annotations:
     field.cattle.io/creatorId: gitlab
-    field.cattle.io/projectId: ''
+    field.cattle.io/projectId: 'c-kk8xm:p-2h6lh'
     git/branch: v1.2.3
     git/remote: >-
       https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc.git
