@@ -16,6 +16,7 @@
     "kosko": "^1.0.1",
     "kubernetes-models": "^1.0.1",
     "toml": "^3.0.0",
+    "ts-node": "^8.10.2",
     "@types/node": "^14.0.27"
   },
   "devDependencies": {
@@ -23,7 +24,6 @@
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "@types/jest": "^26.0.16",
     "dotenv": "^8.2.0",
-    "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }
 }
