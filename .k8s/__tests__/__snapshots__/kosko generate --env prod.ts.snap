@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/siret2idcc/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            registry.gitlab.factory.social.gouv.fr/socialgouv/siret2idcc/app:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
