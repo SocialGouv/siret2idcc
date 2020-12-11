@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/SocialGouv/siret2idcc/compare/v1.1.0...v1.2.0) (2020-12-11)
+
+
+### Features
+
+* **k8s:** use @socialgouv/kosko-charts@alpha ([#129](https://github.com/SocialGouv/siret2idcc/issues/129)) ([e0e8362](https://github.com/SocialGouv/siret2idcc/commit/e0e836202eef7a24fafc1377488ef6ed528c9922))
+
 # [1.1.0](https://github.com/SocialGouv/siret2idcc/compare/v1.0.2...v1.1.0) (2020-10-07)
 
 
