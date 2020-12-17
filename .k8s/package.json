@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@kosko/env": "^1.0.1",
-    "@socialgouv/kosko-charts": "^4.0.0-alpha.15",
+    "@socialgouv/kosko-charts": "^4.1.3",
+    "@types/node": "^14.0.27",
     "kosko": "^1.0.1",
     "kubernetes-models": "^1.0.1",
     "toml": "^3.0.0",
-    "ts-node": "^8.10.2",
-    "@types/node": "^14.0.27"
+    "ts-node": "^8.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
