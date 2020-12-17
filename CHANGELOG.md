@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/SocialGouv/siret2idcc/compare/v1.2.0...v1.2.1) (2020-12-17)
+
+
+### Bug Fixes
+
+* upgrade CI deps ([#130](https://github.com/SocialGouv/siret2idcc/issues/130)) ([6a61506](https://github.com/SocialGouv/siret2idcc/commit/6a615067d1a03659687e52d8c315b870d732d58f))
+
 # [1.2.0](https://github.com/SocialGouv/siret2idcc/compare/v1.1.0...v1.2.0) (2020-12-11)
 
 
