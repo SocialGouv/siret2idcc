@@ -1,15 +1,18 @@
-FROM node:12-alpine
+FROM node:15-alpine
 
 WORKDIR /app
 
 RUN chown node:node /app
 
-COPY . .
-
-RUN yarn --frozen-lockfile
-
-USER node
+COPY package.json .
+COPY yarn.lock .
 
 ENV NODE_ENV=production
+
+RUN yarn install --production --frozen-lockfile
+
+COPY . .
+
+USER node
 
 ENTRYPOINT ["yarn", "start"]
