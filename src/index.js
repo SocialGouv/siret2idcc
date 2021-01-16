@@ -9,7 +9,7 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-const isValidSiret = siret => siret && siret.match(/^\d{14}$/);
+const isValidSiret = (siret) => siret && siret.match(/^\d{14}$/);
 
 // 82161143100015
 app.get("/api/v1/:siret", (req, res) => {
@@ -27,9 +27,9 @@ app.get("/api/v1/:siret", (req, res) => {
 app.get("/api/v2/:sirets", (req, res) => {
   const sirets = req.params.sirets;
   const nums = sirets.split(",");
-  const results = nums.map(num => ({
+  const results = nums.map((num) => ({
+    conventions: (isValidSiret(num) && getConventions(num)) || [],
     siret: num,
-    conventions: (isValidSiret(num) && getConventions(num)) || []
   }));
   return res.json(results);
 });
@@ -41,7 +41,7 @@ app.get("/healthz", (req, res) => {
 app.get("/", (req, res) => {
   return res.json({
     url: "https://github.com/SocialGouv/siret2idcc",
-    version: process.env.VERSION || pkg.version
+    version: process.env.VERSION || pkg.version,
   });
 });
 

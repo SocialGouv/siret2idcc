@@ -1,7 +1,7 @@
 const app = require("../index");
 const request = require("supertest");
 
-test("e2e : empty call should return 404", done => {
+test("e2e : empty call should return 404", (done) => {
   request(app)
     .get("/api/v1/")
     .expect(404)
@@ -11,7 +11,7 @@ test("e2e : empty call should return 404", done => {
     });
 });
 
-test("e2e : /api/v1/82161143100015 should return convention", done => {
+test("e2e : /api/v1/82161143100015 should return convention", (done) => {
   request(app)
     .get("/api/v1/82161143100015")
     .expect(200)
@@ -21,7 +21,7 @@ test("e2e : /api/v1/82161143100015 should return convention", done => {
     });
 });
 
-test("e2e : unknown siret should return empty array", done => {
+test("e2e : unknown siret should return empty array", (done) => {
   request(app)
     .get("/api/v1/99999999999999")
     .expect(200)
@@ -31,7 +31,7 @@ test("e2e : unknown siret should return empty array", done => {
     });
 });
 
-test("e2e : invalid siret should return 422", done => {
+test("e2e : invalid siret should return 422", (done) => {
   request(app)
     .get("/api/v1/banzai")
     .expect(422)

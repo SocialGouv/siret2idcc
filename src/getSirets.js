@@ -5,7 +5,7 @@ const inFile =
   process.env.DATA_FILE || path.join(__dirname, `../data/WEEZ.csv`);
 
 const lineReader = require("readline").createInterface({
-  input: fs.createReadStream(inFile)
+  input: fs.createReadStream(inFile),
 });
 
 const isValidRow = ([, siret, idcc]) =>
@@ -13,8 +13,8 @@ const isValidRow = ([, siret, idcc]) =>
 
 const sirets = {};
 
-lineReader.on("line", line => {
-  const row = line.split(",").map(cell => cell.trim());
+lineReader.on("line", (line) => {
+  const row = line.split(",").map((cell) => cell.trim());
   if (isValidRow(row)) {
     const [, siret, idcc] = row;
     if (sirets[siret]) {

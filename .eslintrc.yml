@@ -2,4 +2,5 @@ root: true
 extends:
   - "@socialgouv/eslint-config-recommended"
 rules:
-  jest/no-test-callback: warn
+  jest/no-test-callback: off
+  jest/no-done-callback: warn
