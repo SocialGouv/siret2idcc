@@ -5,10 +5,10 @@ const getConventionUrl = require("./getConventionUrl");
 
 const sirets = getSirets();
 
-const getConvention = idcc =>
-  kali.find(cc => parseInt(cc.num, 10) === parseInt(idcc, 10));
+const getConvention = (idcc) =>
+  kali.find((cc) => parseInt(cc.num, 10) === parseInt(idcc, 10));
 
-const getConventions = siret => {
+const getConventions = (siret) => {
   const match = sirets[siret];
   if (!match || match.length === 0) {
     return [];
@@ -19,9 +19,9 @@ const getConventions = siret => {
     // remove empty results
     .filter(Boolean)
     // add url field
-    .map(convention => ({
+    .map((convention) => ({
       ...convention,
-      url: getConventionUrl(convention.id)
+      url: getConventionUrl(convention.id),
     }));
 
   return results;
