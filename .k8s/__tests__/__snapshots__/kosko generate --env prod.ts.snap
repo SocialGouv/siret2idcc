@@ -34,8 +34,7 @@ spec:
         team: siret2idcc
     spec:
       containers:
-        - image: >-
-            harbor.fabrique.social.gouv.fr/cdtn/siret2idcc:0123456789abcdefghijklmnopqrstuvwxyz0123
+        - image: harbor.fabrique.social.gouv.fr/cdtn/siret2idcc:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
