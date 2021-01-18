@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/SocialGouv/siret2idcc/compare/v1.2.1...v1.2.2) (2021-01-18)
+
+
+### Bug Fixes
+
+* force kaniko release ([66494eb](https://github.com/SocialGouv/siret2idcc/commit/66494ebcc8447415ac153173ff94a3995f868810))
+
 ## [1.2.1](https://github.com/SocialGouv/siret2idcc/compare/v1.2.0...v1.2.1) (2020-12-17)
 
 
