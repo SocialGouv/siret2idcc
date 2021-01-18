@@ -6,6 +6,8 @@ A very simple API that exposes a file that maps SIRETs to IDCCs.
 
 Available at https://siret2idcc.fabrique.social.gouv.fr/api/v2/80258570300027
 
+The raw data is also available on [data.gouv.fr](https://www.data.gouv.fr/fr/datasets/liste-des-conventions-collectives-par-entreprise-siret/)
+
 Conventions data is extracted from [kali-data](https://github.com/SocialGouv/kali-data).
 
 :warning: Usage interne, aucune garantie sur les données.
