@@ -30,18 +30,18 @@ metadata:
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
   labels:
-    app: app
+    app: siret2idcc
     application: master-dev2-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
-  name: app
+  name: siret2idcc
   namespace: siret2idcc-65-master-dev2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: siret2idcc
   template:
     metadata:
       annotations:
@@ -49,7 +49,7 @@ spec:
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
       labels:
-        app: app
+        app: siret2idcc
         application: master-dev2-siret2idcc
         owner: siret2idcc
         team: siret2idcc
@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/siret2idcc/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/cdtn/siret2idcc:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -66,7 +66,7 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 5
             timeoutSeconds: 5
-          name: app
+          name: siret2idcc
           ports:
             - containerPort: 3000
               name: http
@@ -97,12 +97,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: app
+    app: siret2idcc
     application: master-dev2-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
-  name: app
+  name: siret2idcc
   annotations:
     app.gitlab.com/app: socialgouv-siret2idcc
     app.gitlab.com/env: master-dev2
@@ -114,7 +114,7 @@ spec:
       port: 80
       targetPort: 3000
   selector:
-    app: app
+    app: siret2idcc
   type: ClusterIP
 ---
 apiVersion: extensions/v1beta1
@@ -126,12 +126,12 @@ metadata:
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
   labels:
-    app: app
+    app: siret2idcc
     application: master-dev2-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
-  name: app
+  name: siret2idcc
   namespace: siret2idcc-65-master-dev2
 spec:
   rules:
@@ -139,7 +139,7 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: app
+              serviceName: siret2idcc
               servicePort: 80
             path: /
   tls:

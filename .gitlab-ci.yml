@@ -1,16 +1,16 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v20.3.1
+    ref: v20.4.0
+  - project: SocialGouv/gitlab-ci-yml
+    file: /base_kaniko_stage.yml
+    ref: v20.4.0
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
 
-# NOTE(julienbouquillon): use custom register job
-# By default, kosko-charts use a "/app" for default docker images names
-# TODO: discuss
 Register image:
   extends: .autodevops_register_image
   variables:
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
+    IMAGE_NAME: siret2idcc
