@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/SocialGouv/siret2idcc/compare/v1.2.3...v1.2.4) (2021-01-19)
+
+
+### Bug Fixes
+
+* use kosko-charts@4.5 ([#137](https://github.com/SocialGouv/siret2idcc/issues/137)) ([3015833](https://github.com/SocialGouv/siret2idcc/commit/301583303fd45f3aebb56e1eb57deabc0a3fdfdd))
+
 ## [1.2.3](https://github.com/SocialGouv/siret2idcc/compare/v1.2.2...v1.2.3) (2021-01-18)
 
 
