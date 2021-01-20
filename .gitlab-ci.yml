@@ -1,10 +1,10 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v20.4.0
+    ref: v20.4.1
   - project: SocialGouv/gitlab-ci-yml
     file: /base_kaniko_stage.yml
-    ref: v20.4.0
+    ref: v20.4.1
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
