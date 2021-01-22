@@ -1,3 +1,11 @@
+## [1.2.5](https://github.com/SocialGouv/siret2idcc/compare/v1.2.4...v1.2.5) (2021-01-22)
+
+
+### Bug Fixes
+
+* fix registration ([#139](https://github.com/SocialGouv/siret2idcc/issues/139)) ([ca671a2](https://github.com/SocialGouv/siret2idcc/commit/ca671a21ad74c46876c821256e9627f464a51229))
+* Use AUTO_DEVOPS_KANIKO env var in pipeline. ([#138](https://github.com/SocialGouv/siret2idcc/issues/138)) ([ab46d7d](https://github.com/SocialGouv/siret2idcc/commit/ab46d7dc2a7130a6a1a0030b0d6cb3e19fba74cb))
+
 ## [1.2.4](https://github.com/SocialGouv/siret2idcc/compare/v1.2.3...v1.2.4) (2021-01-19)
 
 
