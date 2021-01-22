@@ -1,16 +1,9 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v20.4.1
-  - project: SocialGouv/gitlab-ci-yml
-    file: /base_kaniko_stage.yml
-    ref: v20.4.1
+    ref: kaniko-gary
 
 variables:
+  AUTO_DEVOPS_KANIKO: "🐕"
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
-
-Register image:
-  extends: .autodevops_register_image
-  variables:
-    IMAGE_NAME: siret2idcc
