@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/SocialGouv/siret2idcc/compare/v1.2.6...v1.2.7) (2021-01-25)
+
+
+### Bug Fixes
+
+* **ci:** use kapp annotations ([#141](https://github.com/SocialGouv/siret2idcc/issues/141)) ([d737537](https://github.com/SocialGouv/siret2idcc/commit/d73753775e834d473e21914a4089078b0d28cd89))
+
 ## [1.2.6](https://github.com/SocialGouv/siret2idcc/compare/v1.2.5...v1.2.6) (2021-01-25)
 
 
