@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/SocialGouv/siret2idcc/compare/v1.2.5...v1.2.6) (2021-01-25)
+
+
+### Bug Fixes
+
+* add AUTO_DEVOPS_ENABLE_KAPP ([#140](https://github.com/SocialGouv/siret2idcc/issues/140)) ([315a539](https://github.com/SocialGouv/siret2idcc/commit/315a5393fc5ac02131e067922a437e4ecc67da0a))
+
 ## [1.2.5](https://github.com/SocialGouv/siret2idcc/compare/v1.2.4...v1.2.5) (2021-01-22)
 
 
