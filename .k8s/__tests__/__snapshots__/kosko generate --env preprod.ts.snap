@@ -26,6 +26,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
     app.gitlab.com/env: preprod-dev2
     app.gitlab.com/env.name: preprod-dev2
@@ -45,6 +47,8 @@ spec:
   template:
     metadata:
       annotations:
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-siret2idcc
         app.gitlab.com/env: preprod-dev2
         app.gitlab.com/env.name: preprod-dev2
@@ -103,6 +107,8 @@ metadata:
     cert: wildcard
   name: siret2idcc
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
     app.gitlab.com/env: preprod-dev2
     app.gitlab.com/env.name: preprod-dev2
@@ -121,6 +127,8 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
     app.gitlab.com/env: preprod-dev2
     app.gitlab.com/env.name: preprod-dev2
