@@ -12,8 +12,8 @@ metadata:
     git/remote: >-
       https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc.git
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: preprod-dev2
-    app.gitlab.com/env.name: preprod-dev2
+    app.gitlab.com/env: preprod-dev42
+    app.gitlab.com/env.name: preprod-dev42
   labels:
     azure-pg-admin-user: siret2idcc
     application: v1-2-3-siret2idcc
@@ -29,8 +29,8 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: preprod-dev2
-    app.gitlab.com/env.name: preprod-dev2
+    app.gitlab.com/env: preprod-dev42
+    app.gitlab.com/env.name: preprod-dev42
   labels:
     app: siret2idcc
     application: v1-2-3-siret2idcc
@@ -50,8 +50,8 @@ spec:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-siret2idcc
-        app.gitlab.com/env: preprod-dev2
-        app.gitlab.com/env.name: preprod-dev2
+        app.gitlab.com/env: preprod-dev42
+        app.gitlab.com/env.name: preprod-dev42
       labels:
         app: siret2idcc
         application: v1-2-3-siret2idcc
@@ -110,8 +110,8 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: preprod-dev2
-    app.gitlab.com/env.name: preprod-dev2
+    app.gitlab.com/env: preprod-dev42
+    app.gitlab.com/env.name: preprod-dev42
   namespace: siret2idcc-65-preprod-dev2
 spec:
   ports:
@@ -130,8 +130,8 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: preprod-dev2
-    app.gitlab.com/env.name: preprod-dev2
+    app.gitlab.com/env: preprod-dev42
+    app.gitlab.com/env.name: preprod-dev42
   labels:
     app: siret2idcc
     application: v1-2-3-siret2idcc
@@ -142,7 +142,7 @@ metadata:
   namespace: siret2idcc-65-preprod-dev2
 spec:
   rules:
-    - host: preprod-siret2idcc.dev2.fabrique.social.gouv.fr
+    - host: preprod-siret2idcc.dev42.fabrique.social.gouv.fr
       http:
         paths:
           - backend:
@@ -151,7 +151,7 @@ spec:
             path: /
   tls:
     - hosts:
-        - preprod-siret2idcc.dev2.fabrique.social.gouv.fr
+        - preprod-siret2idcc.dev42.fabrique.social.gouv.fr
       secretName: wildcard-crt
 "
 `;
