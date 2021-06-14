@@ -12,11 +12,11 @@ metadata:
     git/remote: >-
       https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/siret2idcc.git
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: master-dev42
+    app.gitlab.com/env.name: master-dev42
   labels:
     azure-pg-admin-user: siret2idcc
-    application: master-dev2-siret2idcc
+    application: master-dev42-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -29,11 +29,11 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: master-dev42
+    app.gitlab.com/env.name: master-dev42
   labels:
     app: siret2idcc
-    application: master-dev2-siret2idcc
+    application: master-dev42-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -50,11 +50,11 @@ spec:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-siret2idcc
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: master-dev42
+        app.gitlab.com/env.name: master-dev42
       labels:
         app: siret2idcc
-        application: master-dev2-siret2idcc
+        application: master-dev42-siret2idcc
         owner: siret2idcc
         team: siret2idcc
         cert: wildcard
@@ -102,7 +102,7 @@ kind: Service
 metadata:
   labels:
     app: siret2idcc
-    application: master-dev2-siret2idcc
+    application: master-dev42-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -111,8 +111,8 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: master-dev42
+    app.gitlab.com/env.name: master-dev42
   namespace: siret2idcc-65-master-dev2
 spec:
   ports:
@@ -131,11 +131,11 @@ metadata:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-siret2idcc
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: master-dev42
+    app.gitlab.com/env.name: master-dev42
   labels:
     app: siret2idcc
-    application: master-dev2-siret2idcc
+    application: master-dev42-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -143,7 +143,7 @@ metadata:
   namespace: siret2idcc-65-master-dev2
 spec:
   rules:
-    - host: master-dev2-siret2idcc.dev2.fabrique.social.gouv.fr
+    - host: master-dev42-siret2idcc.dev42.fabrique.social.gouv.fr
       http:
         paths:
           - backend:
@@ -152,7 +152,7 @@ spec:
             path: /
   tls:
     - hosts:
-        - master-dev2-siret2idcc.dev2.fabrique.social.gouv.fr
+        - master-dev42-siret2idcc.dev42.fabrique.social.gouv.fr
       secretName: wildcard-crt
 "
 `;

@@ -8,7 +8,7 @@
   "author": "contact@num.social.gouv.fr",
   "license": "MIT",
   "dependencies": {
-    "@socialgouv/kali-data": "^1.95.0",
+    "@socialgouv/kali-data": "^2.87.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
   },
