@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/SocialGouv/siret2idcc/compare/v1.3.0...v1.3.1) (2021-06-14)
+
+
+### Bug Fixes
+
+* **release:** force patch ([b116bf4](https://github.com/SocialGouv/siret2idcc/commit/b116bf47ecd2c5ab54c9bb8e2306bdfcc072090e))
+
 # [1.3.0](https://github.com/SocialGouv/siret2idcc/compare/v1.2.7...v1.3.0) (2021-05-03)
 
 
