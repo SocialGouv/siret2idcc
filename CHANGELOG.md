@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/SocialGouv/siret2idcc/compare/v1.3.3...v1.3.4) (2021-06-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @socialgouv/kosko-charts to ^6.3.0 ([#159](https://github.com/SocialGouv/siret2idcc/issues/159)) ([a2903f8](https://github.com/SocialGouv/siret2idcc/commit/a2903f8977a9e2bb561569e57d9e898ead3b9a1e))
+
 ## [1.3.3](https://github.com/SocialGouv/siret2idcc/compare/v1.3.2...v1.3.3) (2021-06-28)
 
 
