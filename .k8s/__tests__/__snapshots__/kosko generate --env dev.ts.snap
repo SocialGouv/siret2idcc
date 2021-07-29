@@ -123,7 +123,7 @@ spec:
     app: siret2idcc
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -147,9 +147,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: siret2idcc
-              servicePort: 80
+              service:
+                name: siret2idcc
+                port:
+                  name: http
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - master-dev42-siret2idcc.dev42.fabrique.social.gouv.fr
