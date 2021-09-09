@@ -6,6 +6,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   annotations:
+    socialgouv/creator: autodevops
     field.cattle.io/creatorId: gitlab
     field.cattle.io/projectId: c-bd7z2:p-dtlsm
     git/branch: v1.2.3
@@ -17,6 +18,7 @@ metadata:
   labels:
     azure-pg-admin-user: siret2idcc
     application: v1-2-3-siret2idcc
+    component: v1-2-3-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -34,6 +36,7 @@ metadata:
   labels:
     app: siret2idcc
     application: v1-2-3-siret2idcc
+    component: v1-2-3-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -55,6 +58,7 @@ spec:
       labels:
         app: siret2idcc
         application: v1-2-3-siret2idcc
+        component: v1-2-3-siret2idcc
         owner: siret2idcc
         team: siret2idcc
         cert: wildcard
@@ -102,6 +106,7 @@ metadata:
   labels:
     app: siret2idcc
     application: v1-2-3-siret2idcc
+    component: v1-2-3-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
@@ -135,6 +140,7 @@ metadata:
   labels:
     app: siret2idcc
     application: v1-2-3-siret2idcc
+    component: v1-2-3-siret2idcc
     owner: siret2idcc
     team: siret2idcc
     cert: wildcard
