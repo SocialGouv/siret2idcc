@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/SocialGouv/siret2idcc/compare/v1.3.5...v1.3.6) (2021-09-09)
+
+
+### Bug Fixes
+
+* **k8s:** upgrade for kube 1.2 ([#175](https://github.com/SocialGouv/siret2idcc/issues/175)) ([f451d9f](https://github.com/SocialGouv/siret2idcc/commit/f451d9ffa68b1fbc7655dc06fd6b69ba693b0d46))
+
 ## [1.3.5](https://github.com/SocialGouv/siret2idcc/compare/v1.3.4...v1.3.5) (2021-07-29)
 
 
