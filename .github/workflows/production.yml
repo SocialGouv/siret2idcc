@@ -6,7 +6,7 @@ on:
       - v*
 
 concurrency:
-  group: preproduction
+  group: production
   cancel-in-progress: true
 
 jobs:
@@ -49,7 +49,7 @@ jobs:
     needs: [register, manifests]
     environment:
       name: preproduction
-      url: https://${{ env.ns }}.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+      url: https://siret2idcc-preprod.dev.fabrique.social.gouv.fr
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@master
@@ -80,7 +80,7 @@ jobs:
     needs: [deploy-preprod, manifests-prod]
     environment:
       name: production
-      url: https://${{ env.ns }}.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+      url: https://siret2idcc.fabrique.social.gouv.fr
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@master
