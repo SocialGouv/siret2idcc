@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/SocialGouv/siret2idcc/compare/v1.3.7...v1.4.0) (2021-09-15)
+
+
+### Features
+
+* **ci:** use @socialgouv/actions ([#177](https://github.com/SocialGouv/siret2idcc/issues/177)) ([25d84d0](https://github.com/SocialGouv/siret2idcc/commit/25d84d0256f9391fd2d7bd9300bc726d161b7c2f))
+
 ## [1.3.7](https://github.com/SocialGouv/siret2idcc/compare/v1.3.6...v1.3.7) (2021-09-13)
 
 
