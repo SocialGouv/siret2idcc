@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/SocialGouv/siret2idcc/compare/v1.4.0...v1.5.0) (2021-09-28)
+
+
+### Features
+
+* add WEEZ-0621 ([#180](https://github.com/SocialGouv/siret2idcc/issues/180)) ([6c4efdf](https://github.com/SocialGouv/siret2idcc/commit/6c4efdf2a3d2e7e1ad1c7d206b2963472666732a))
+
 # [1.4.0](https://github.com/SocialGouv/siret2idcc/compare/v1.3.7...v1.4.0) (2021-09-15)
 
 
