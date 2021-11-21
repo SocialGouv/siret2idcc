@@ -8,9 +8,12 @@
   "author": "contact@num.social.gouv.fr",
   "license": "MIT",
   "dependencies": {
-    "@socialgouv/kali-data": "^2.87.0",
+    "@socialgouv/kali-data": "^2.174.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
+  },
+  "engines": {
+    "node": ">= v14.18.1"
   },
   "scripts": {
     "start": "node src/index.js",
@@ -20,7 +23,7 @@
     "k8s": "yarn --silent --cwd .k8s"
   },
   "devDependencies": {
-    "@socialgouv/eslint-config-recommended": "^1.46.0",
+    "@socialgouv/eslint-config-recommended": "^1.99.1",
     "eslint": "^7.32.0",
     "jest": "^27.3.1",
     "prettier": "^2.4.1",
