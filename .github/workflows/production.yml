@@ -43,7 +43,6 @@ jobs:
         uses: SocialGouv/actions/autodevops-manifests@v1
         with:
           environment: "prod"
-          productionNamespace: "cdtn"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
       - name: Use autodevops deployment
