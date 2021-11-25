@@ -1,5 +1,5 @@
 {
-  "name": "siret2idcc",
+  "name": "app",
   "type": "app",
   "registry": "ghcr",
   "project": "siret2idcc",
