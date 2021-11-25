@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/SocialGouv/siret2idcc/compare/v1.5.5...v1.5.6) (2021-11-25)
+
+
+### Bug Fixes
+
+* **ci:** use own namespace ([#192](https://github.com/SocialGouv/siret2idcc/issues/192)) ([3932c27](https://github.com/SocialGouv/siret2idcc/commit/3932c27bc2347fb4ae15d06f41a52f848b854e5f))
+
 ## [1.5.5](https://github.com/SocialGouv/siret2idcc/compare/v1.5.4...v1.5.5) (2021-11-25)
 
 
