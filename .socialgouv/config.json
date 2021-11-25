@@ -2,7 +2,7 @@
   "name": "siret2idcc",
   "type": "app",
   "registry": "ghcr",
-  "project": "cdtn",
+  "project": "siret2idcc",
   "resources": {
     "limits": {
       "cpu": "500m",
