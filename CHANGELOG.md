@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/SocialGouv/siret2idcc/compare/v1.5.2...v1.5.3) (2021-11-25)
+
+
+### Bug Fixes
+
+* upgrade preprod/prod ([#190](https://github.com/SocialGouv/siret2idcc/issues/190)) ([b7ee825](https://github.com/SocialGouv/siret2idcc/commit/b7ee825b4a079efa07e5b0fc54bd14ac84e61b90))
+
 ## [1.5.2](https://github.com/SocialGouv/siret2idcc/compare/v1.5.1...v1.5.2) (2021-11-25)
 
 
