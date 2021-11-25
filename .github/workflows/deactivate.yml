@@ -13,5 +13,3 @@ jobs:
       with:
         kube-config: ${{ secrets.SOCIALGOUV_KUBE_CONFIG_DEV  }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        rancherId: ${{ secrets.RANCHER_PROJECT_ID }} # optional
-        socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }} # optional
