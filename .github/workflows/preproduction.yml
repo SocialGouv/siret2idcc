@@ -26,7 +26,7 @@ jobs:
           environment: "preprod"
           project: ${{ env.project }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: ${{ env.project }}/${{ env.project }}
+          imageName: ${{ env.project }}/app
 
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
