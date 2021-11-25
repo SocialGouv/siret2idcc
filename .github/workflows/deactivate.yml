@@ -11,5 +11,5 @@ jobs:
     steps:
     - uses: SocialGouv/actions/autodevops-deactivate@v1
       with:
-        kube-config: ${{ secrets.SOCIALGOUV_KUBE_CONFIG_DEV  }}
+        kube-config: ${{ secrets.KUBECONFIG  }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
