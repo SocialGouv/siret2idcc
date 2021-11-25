@@ -26,7 +26,7 @@ jobs:
         with:
           project: ${{ env.project }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: cdtn/${{ env.project }}
+          imageName: ${{ env.project }}/app
 
   ##############################################################################
   ## DEPLOY PRODUCTION APPLICATION
