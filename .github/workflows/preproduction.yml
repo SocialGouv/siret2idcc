@@ -2,14 +2,12 @@ name: Review
 
 on:
   push:
-    branches-ignore:
+    branches:
       - master
-    tags-ignore:
-      - v*
 
 concurrency:
   cancel-in-progress: true
-  group: review-${{ github.ref }}
+  group: preprod-${{ github.ref }}
 
 jobs:
   ##############################################################################
@@ -22,10 +20,10 @@ jobs:
       - name: Get project name
         run: |
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-
       - name: Use autodevops build and register
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
+          environment: "preprod"
           project: ${{ env.project }}
           token: ${{ secrets.GITHUB_TOKEN }}
           imageName: cdtn/${{ env.project }}
@@ -40,7 +38,9 @@ jobs:
       - name: Use autodevops manifests generation
         uses: SocialGouv/actions/autodevops-manifests@v1
         with:
-          environment: "dev"
+          environment: "preprod"
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
 
   ##############################################################################
   ## DEPLOY APPLICATION OVER KUBERNETES
@@ -53,6 +53,6 @@ jobs:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@v1
         with:
-          environment: "dev"
+          environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
