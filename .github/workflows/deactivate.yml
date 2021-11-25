@@ -9,6 +9,9 @@ jobs:
     name: 🪦 Review
     runs-on: ubuntu-latest
     steps:
-    - uses: SocialGouv/actions/k8s-funeral@master
+    - uses: SocialGouv/actions/autodevops-deactivate@v1
       with:
         kube-config: ${{ secrets.SOCIALGOUV_KUBE_CONFIG_DEV  }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        rancherId: ${{ secrets.RANCHER_PROJECT_ID }} # optional
+        socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }} # optional
