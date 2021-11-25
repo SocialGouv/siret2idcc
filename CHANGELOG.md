@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/SocialGouv/siret2idcc/compare/v1.5.4...v1.5.5) (2021-11-25)
+
+
+### Bug Fixes
+
+* **ci:** fix project name ([#191](https://github.com/SocialGouv/siret2idcc/issues/191)) ([394705c](https://github.com/SocialGouv/siret2idcc/commit/394705ce1cc8f950a87251e0c52ed5eceae447f8))
+
 ## [1.5.4](https://github.com/SocialGouv/siret2idcc/compare/v1.5.3...v1.5.4) (2021-11-25)
 
 
