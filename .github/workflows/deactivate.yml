@@ -5,8 +5,8 @@ on:
     types: [ closed ]
     
 jobs:
-  bury_review_env:
-    name: 🪦 Review
+  deactivate:
+    name: ☠ Deactivate
     runs-on: ubuntu-latest
     steps:
     - uses: SocialGouv/actions/autodevops-deactivate@v1
