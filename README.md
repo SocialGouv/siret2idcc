@@ -1,4 +1,6 @@
-# siret2idcc
+# siret2idcc 
+
+## deprecated, use : [recherche-entreprises](https://github.com/SocialGouv/recherche-entreprises/)
 
 ![](https://i.imgur.com/gSe54sx.png)
 
