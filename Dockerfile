@@ -13,6 +13,6 @@ RUN yarn install --production --frozen-lockfile
 
 COPY . .
 
-USER node
+USER 1000
 
 ENTRYPOINT ["yarn", "start"]
