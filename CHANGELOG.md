@@ -1,3 +1,10 @@
+## [1.5.7](https://github.com/SocialGouv/siret2idcc/compare/v1.5.6...v1.5.7) (2022-01-17)
+
+
+### Bug Fixes
+
+* **docker:** PSP: use numeric user ([#198](https://github.com/SocialGouv/siret2idcc/issues/198)) ([7116510](https://github.com/SocialGouv/siret2idcc/commit/71165105515778abf19411b9ea706ed201e36828))
+
 ## [1.5.6](https://github.com/SocialGouv/siret2idcc/compare/v1.5.5...v1.5.6) (2021-11-25)
 
 
