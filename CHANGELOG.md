@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/SocialGouv/siret2idcc/compare/v1.6.0...v1.6.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **ci:** autodevops-helm ([#200](https://github.com/SocialGouv/siret2idcc/issues/200)) ([673249d](https://github.com/SocialGouv/siret2idcc/commit/673249d9b744b928b8928b86afdec2e26d4024eb))
+
 # [1.6.0](https://github.com/SocialGouv/siret2idcc/compare/v1.5.7...v1.6.0) (2022-01-17)
 
 
