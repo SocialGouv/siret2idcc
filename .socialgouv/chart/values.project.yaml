@@ -1,5 +1,6 @@
 app:
   containerPort: 3000
+  probesPath: /healthz
   resources:
     limits:
       cpu: 500m
