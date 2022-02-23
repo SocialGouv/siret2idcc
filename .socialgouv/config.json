@@ -2,15 +2,5 @@
   "name": "app",
   "type": "app",
   "registry": "ghcr",
-  "project": "siret2idcc",
-  "resources": {
-    "limits": {
-      "cpu": "500m",
-      "memory": "1280Mi"
-    },
-    "requests": {
-      "cpu": "100m",
-      "memory": "128Mi"
-    }
-  }
+  "project": "siret2idcc"
 }
