@@ -39,13 +39,11 @@ jobs:
       name: production
       url: https://siret2idcc.fabrique.social.gouv.fr
     steps:
-      - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-helm-deploy@v1
+      - name: Use kube-workflow deployment
+        uses: SocialGouv/kube-workflow@master
         with:
-          environment: "prod"
+          environment: prod
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
-          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
           rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
-          imageName: siret2idcc/app
