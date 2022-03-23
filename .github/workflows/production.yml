@@ -40,7 +40,7 @@ jobs:
       url: https://siret2idcc.fabrique.social.gouv.fr
     steps:
       - name: Use kube-workflow deployment
-        uses: SocialGouv/kube-workflow@master
+        uses: SocialGouv/kube-workflow@v1
         with:
           environment: prod
           token: ${{ secrets.GITHUB_TOKEN }}
