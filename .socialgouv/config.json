@@ -1,6 +1,0 @@
-{
-  "name": "app",
-  "type": "app",
-  "registry": "ghcr",
-  "project": "siret2idcc"
-}
