@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/SocialGouv/siret2idcc/compare/v1.6.2...v1.6.3) (2022-03-23)
+
+
+### Bug Fixes
+
+* use kube-workflow@v1 ([#203](https://github.com/SocialGouv/siret2idcc/issues/203)) ([dcb74a8](https://github.com/SocialGouv/siret2idcc/commit/dcb74a801826f538fe9aec9917d500ec7949ad3b))
+
 ## [1.6.2](https://github.com/SocialGouv/siret2idcc/compare/v1.6.1...v1.6.2) (2022-03-23)
 
 
