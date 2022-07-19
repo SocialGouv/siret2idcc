@@ -10,7 +10,8 @@
   "dependencies": {
     "@socialgouv/kali-data": "^2.174.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "zlib": "^1.0.5"
   },
   "engines": {
     "node": ">= v14.18.1"
@@ -18,7 +19,7 @@
   "scripts": {
     "start": "node src/index.js",
     "lint": "eslint src",
-    "test": "env DATA_FILE=./src/__test__/input.csv jest --testPathIgnorePatterns .k8s/*",
+    "test": "env DATA_FILE=./src/__test__/input.csv.gz jest --testPathIgnorePatterns .k8s/*",
     "build": "echo 'Nothing to build'",
     "k8s": "yarn --silent --cwd .k8s"
   },
