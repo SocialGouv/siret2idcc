@@ -1,11 +1,14 @@
 const fs = require("fs");
 const path = require("path");
+const zlib = require("zlib");
 
 const inFile =
-  process.env.DATA_FILE || path.join(__dirname, `../data/WEEZ.csv`);
+  process.env.DATA_FILE || path.join(__dirname, `../data/WEEZ.csv.gz`);
+
+const stream = fs.createReadStream(inFile).pipe(zlib.createGunzip());
 
 const lineReader = require("readline").createInterface({
-  input: fs.createReadStream(inFile),
+  input: stream,
 });
 
 const isValidRow = ([, siret, idcc]) =>
