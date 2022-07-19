@@ -1,3 +1,10 @@
+## [1.6.4](https://github.com/SocialGouv/siret2idcc/compare/v1.6.3...v1.6.4) (2022-07-19)
+
+
+### Bug Fixes
+
+* use WEEZ-0322 and use .gz to prevent LFS ([#209](https://github.com/SocialGouv/siret2idcc/issues/209)) ([b3a17ed](https://github.com/SocialGouv/siret2idcc/commit/b3a17ed4cdc3b9c564da6792995609eced2eaa28))
+
 ## [1.6.3](https://github.com/SocialGouv/siret2idcc/compare/v1.6.2...v1.6.3) (2022-03-23)
 
 
