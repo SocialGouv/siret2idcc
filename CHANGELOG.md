@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/SocialGouv/siret2idcc/compare/v1.6.4...v1.6.5) (2022-09-20)
+
+
+### Bug Fixes
+
+* upgrade WEEZ 140922 ([#211](https://github.com/SocialGouv/siret2idcc/issues/211)) ([ec55206](https://github.com/SocialGouv/siret2idcc/commit/ec5520612a5fbb505f919bd747051c356bb5b119))
+
 ## [1.6.4](https://github.com/SocialGouv/siret2idcc/compare/v1.6.3...v1.6.4) (2022-07-19)
 
 
