@@ -1,3 +1,10 @@
+## [1.6.7](https://github.com/SocialGouv/siret2idcc/compare/v1.6.6...v1.6.7) (2023-04-24)
+
+
+### Bug Fixes
+
+* **ci:** add production workflow_dispatch ([231fec9](https://github.com/SocialGouv/siret2idcc/commit/231fec972cadfcc0fd388c21344054e0f4dc721e))
+
 ## [1.6.6](https://github.com/SocialGouv/siret2idcc/compare/v1.6.5...v1.6.6) (2023-03-21)
 
 
