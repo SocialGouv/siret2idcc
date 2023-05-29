@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/SocialGouv/siret2idcc/compare/v1.6.7...v1.7.0) (2023-05-29)
+
+
+### Features
+
+* ci on kontinuous ([#217](https://github.com/SocialGouv/siret2idcc/issues/217)) ([c0ab2c7](https://github.com/SocialGouv/siret2idcc/commit/c0ab2c73b30ce8b5a6844c0312de0a86d4b7a585))
+
 ## [1.6.7](https://github.com/SocialGouv/siret2idcc/compare/v1.6.6...v1.6.7) (2023-04-24)
 
 
