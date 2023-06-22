@@ -3,7 +3,7 @@ name: Update datagouv
 on:
   workflow_dispatch:
   schedule:
-    - "0 0 * * 1" # every monday
+    - cron: "0 0 * * 1" # every monday
 
 concurrency:
   cancel-in-progress: true
