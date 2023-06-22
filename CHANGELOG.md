@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/SocialGouv/siret2idcc/compare/v1.7.0...v1.7.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* Update datagouv data ([9fc789f](https://github.com/SocialGouv/siret2idcc/commit/9fc789fdfb9355fe09cf3b61a8f19c972f188c07))
+
 # [1.7.0](https://github.com/SocialGouv/siret2idcc/compare/v1.6.7...v1.7.0) (2023-05-29)
 
 
