@@ -15,9 +15,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
 
       - name: Download data
         id: download
+        continue-on-error: true
         run: |
           sudo apt-get update
           sudo apt-get install -y curl git
@@ -35,10 +38,13 @@ jobs:
             mv ./WEEZ.csv.gz ./data/WEEZ.csv.gz
           else
             echo "File not changed"
+            rm ./WEEZ.csv.gz
+            exit 1
           fi;
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.download.outcome == 'success'
         with:
           commit_message: "fix: Update datagouv data"
           commit_author: "GitHub bot <actions@github.com>"
