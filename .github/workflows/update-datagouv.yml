@@ -1,0 +1,44 @@
+name: Update datagouv
+
+on:
+  workflow_dispatch:
+  schedule:
+    - "0 0 * * 1" # every monday
+
+concurrency:
+  cancel-in-progress: true
+  group: update-datagouv
+
+jobs:
+  update-datagouv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download data
+        id: download
+        run: |
+          apt-get update
+          apt-get install -y curl git
+          # download https://www.data.gouv.fr/fr/datasets/liste-des-conventions-collectives-par-entreprise-siret/
+          echo "Download from data.gouv"
+          curl -L https://www.data.gouv.fr/fr/datasets/r/bfc3a658-c054-4ecc-ba4b-22f3f5789dc7 -o "./WEEZ.csv"
+          # ensure we have an entry for "renault SAS"
+          echo "Check validity"
+          cat ./WEEZ.csv | grep 78012998704037
+          # check if its a new file
+          gzip ./WEEZ.csv
+          DIFFED=$(diff ./WEEZ.csv.gz ./data/WEEZ.csv.gz) || true
+          if [[ $DIFFED ]]; then
+            echo "File changed"
+            mv ./WEEZ.csv.gz ./data/WEEZ.csv.gz
+          else
+            echo "File not changed"
+          fi;
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "fix: Update datagouv data"
+          commit_author: "GitHub bot <actions@github.com>"
