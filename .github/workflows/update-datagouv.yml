@@ -19,8 +19,8 @@ jobs:
       - name: Download data
         id: download
         run: |
-          apt-get update
-          apt-get install -y curl git
+          sudo apt-get update
+          sudo apt-get install -y curl git
           # download https://www.data.gouv.fr/fr/datasets/liste-des-conventions-collectives-par-entreprise-siret/
           echo "Download from data.gouv"
           curl -L https://www.data.gouv.fr/fr/datasets/r/bfc3a658-c054-4ecc-ba4b-22f3f5789dc7 -o "./WEEZ.csv"
