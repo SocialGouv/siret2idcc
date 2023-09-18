@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/SocialGouv/siret2idcc/compare/v1.7.1...v1.7.2) (2023-09-18)
+
+
+### Bug Fixes
+
+* upgrade docker image ([#2](https://github.com/SocialGouv/siret2idcc/issues/2)) ([28561c4](https://github.com/SocialGouv/siret2idcc/commit/28561c4725d05df4c3a153f080d1650f23de13c1))
+
 ## [1.7.1](https://github.com/SocialGouv/siret2idcc/compare/v1.7.0...v1.7.1) (2023-06-22)
 
 
