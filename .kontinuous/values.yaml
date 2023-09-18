@@ -1,3 +1,5 @@
+projectName: fabrique
+
 app:
   containerPort: 3000
   probesPath: /healthz
