@@ -1,1 +1,7 @@
 projectName: fabrique
+
+dependencies:
+  fabrique:
+    extends:
+      - name: ovh
+      - name: buildkit-service
