@@ -1,6 +1,6 @@
 # siret2idcc 
 
-## :warning: deprecated, use : [recherche-entreprises](https://github.com/SocialGouv/recherche-entreprises/)
+## :warning: Cette API est dépréciée, nous vous conseillons d'utiliser [l'API recherche-entreprises](https://api.gouv.fr/documentation/api-recherche-entreprises).
 
 ![](https://i.imgur.com/gSe54sx.png)
 
