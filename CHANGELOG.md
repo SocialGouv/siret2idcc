@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/SocialGouv/siret2idcc/compare/v1.7.1...v1.8.0) (2023-12-13)
+
+
+### Features
+
+* use ovh ([#219](https://github.com/SocialGouv/siret2idcc/issues/219)) ([de5dc39](https://github.com/SocialGouv/siret2idcc/commit/de5dc396f3e546264c9af08b7b3c3808965df9ab))
+
 ## [1.7.1](https://github.com/SocialGouv/siret2idcc/compare/v1.7.0...v1.7.1) (2023-06-22)
 
 
