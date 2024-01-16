@@ -1,3 +1,9 @@
-k8s
-.gitlab-ci.yml
+.dockerignore
+Dockerfile
+.git
+.github
+.kontinuous
+.socialgouv.yaml
+.releaserc.yml
+*.md
 node_modules
