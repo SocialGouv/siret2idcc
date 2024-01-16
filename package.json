@@ -19,7 +19,7 @@
   "scripts": {
     "start": "node src/index.js",
     "lint": "eslint src",
-    "test": "env DATA_FILE=./src/__test__/input.csv.gz jest --testPathIgnorePatterns .k8s/*",
+    "test": "env DATA_FILE=./src/__test__/input.csv.gz jest",
     "build": "echo 'Nothing to build'",
     "k8s": "yarn --silent --cwd .k8s"
   },
