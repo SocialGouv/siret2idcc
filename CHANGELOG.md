@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/SocialGouv/siret2idcc/compare/v1.8.0...v1.8.1) (2024-01-22)
+
+
+### Bug Fixes
+
+* yarn berry + yarn fetch + docker opti ([#228](https://github.com/SocialGouv/siret2idcc/issues/228)) ([85d12e0](https://github.com/SocialGouv/siret2idcc/commit/85d12e07876865237eb91185851d3357053edfc7))
+
 # [1.8.0](https://github.com/SocialGouv/siret2idcc/compare/v1.7.1...v1.8.0) (2023-12-13)
 
 
