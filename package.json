@@ -29,5 +29,5 @@
     "prettier": "^2.4.1",
     "supertest": "^6.1.6"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.0"
 }
